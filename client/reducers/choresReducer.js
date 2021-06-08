@@ -19,9 +19,9 @@ const choresReducer = (state = initialState, action) => {
       const newChore = {
         choreId: lastChoreId,
         //not sure about this action.payload here...hangover from MegarMarkets
-        description: action.payload,
+        description: action.payload.description,
         //how we would be assign this?
-        assignedTo: null,
+        assignedTo: action.payload.assignedTo,
       };
       // push the new chore onto a copy of the chores list
       choresList = state.choresList.slice();
