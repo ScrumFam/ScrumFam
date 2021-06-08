@@ -1,10 +1,18 @@
 import * as React from 'react';
-import { render } from 'react-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Login from './Login Page/Login';
+import Signup from './Sign Up Page/Signup';
 
 function App() {
   return(
     <div className="test_div">
-      HEY IT'S A DIV
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" render={() => <Login />} />
+          <Route path="/signup" render={() => <Signup />} />
+        </Switch>
+      </BrowserRouter>
+     
     </div>
   )
 }
