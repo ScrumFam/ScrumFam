@@ -12,37 +12,37 @@
 import * as types from "../constants/actionTypes";
 
 const initialState = {
-  totalUsers: 0,
-  usersList: [],
-  lastUserId: 10000,
-  newUser: "",
+  totalGoals: 0,
+  goalsList: [],
+  lastGoalId: 10000,
 };
 
 const usersReducer = (state = initialState, action) => {
-  let usersList;
+  let goalsList;
   //   let totalCards = state.totalCards;
   //   const marketArr = state.marketList.slice();
   //   console.log(marketArr);
   switch (action.type) {
-    case types.ADD_USER:
+    case types.ADD_GOAL:
       //       // increment lastUserId and totalUsers counters
-      const lastUserId = state.lastUserId + 1,
-        totalUsers = state.totalUsers + 1;
+      const lastGoalId = state.lastGoalId + 1,
+        totalGoals = state.totalGoals + 1;
       //       // create the new market object from provided data
-      const newUser = {
-        userId: lastUserId,
+      const newGoal = {
+        goalId: lastGoalId,
         //unsure about action.payload here...
-        name: action.payload.name,
+        description: action.payload.description,
+        dollarValue: action.payload.dollarValue,
       };
       //       // push the new user onto a copy of the users list
-      usersList = state.usersList.slice();
-      usersList.push(newUser);
+      goalsList = state.goalsList.slice();
+      goalsList.push(newGoal);
       //       // return updated state
       return {
         ...state,
-        usersList,
-        lastUserId,
-        totalUsers,
+        goalsList,
+        lastGoalId,
+        totalGoals,
       };
     //     case types.ADD_CARD:
     //       console.log(marketArr);
