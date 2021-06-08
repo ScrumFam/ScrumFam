@@ -35,7 +35,7 @@ class MainContainer extends Component {
         totalUsers={this.props.totalUsers}
       />
     ) : (
-      <ChildContainer />
+      <ChildContainer choresList={this.props.choresList} />
     );
   }
 
