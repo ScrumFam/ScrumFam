@@ -2,7 +2,9 @@ import * as types from "../constants/actionTypes";
 
 const initialState = {
   totalChores: 0,
-  choresList: [],
+  choresList: [
+    { choreId: 1, description: "Mow the lawn", assignedTo: "Billy" },
+  ],
   lastChoreId: 10000,
   newChoreDescription: "",
 };
