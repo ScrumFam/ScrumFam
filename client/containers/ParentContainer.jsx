@@ -39,6 +39,24 @@ class ParentContainer extends Component {
       <div className="temp-border">
         <h2 className="scrumfan-heading">ScrumFam!</h2>
         <h3>PARENT HUB</h3>
+        <h4>Add Child</h4>
+        <input id="add-child-username"></input>
+        <input type="password" id="add-child-password"></input>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            const childNameField =
+              document.getElementById("add-child-username");
+            const childPasswordField =
+              document.getElementById("add-child-password");
+            this.props.addUser({
+              name: childNameField.value,
+              password: childPasswordField.value,
+            });
+          }}
+        >
+          Add to the ScrumFan!
+        </button>
         <h3>Enter a New Task</h3>
         <input id="chore-description"></input>
         <p>Select from existing users, or leave unassigned...</p>
@@ -54,7 +72,7 @@ class ParentContainer extends Component {
             e.preventDefault();
             const choreField = document.getElementById("chore-description");
             const userDropdown = document.getElementById("users");
-            this.props.addChore(...this.props.choresList, {
+            this.props.addChore({
               assignedTo: userDropdown.value,
               description: choreField.value,
             });
