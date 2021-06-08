@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Login from './Login Page/Login';
-import Signup from './Sign Up Page/Signup';
-import MainContainer from './containers/MainContainer'
+import * as React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Login from "./Login Page/Login.jsx";
+import Signup from "./Sign Up Page/Signup.jsx";
+import MainContainer from "./containers/MainContainer.jsx";
 
 function App() {
-  return(
+  return (
     <div className="test_div">
       <BrowserRouter>
         <Switch>
@@ -14,9 +14,8 @@ function App() {
           <Route path="/home" render={() => <MainContainer />} />
         </Switch>
       </BrowserRouter>
-
     </div>
-  )
+  );
 }
 
 export default App;
