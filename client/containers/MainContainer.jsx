@@ -35,13 +35,13 @@ class MainContainer extends Component {
         totalUsers={this.props.totalUsers}
       />
     ) : (
-      <ChildContainer />
+      <ChildContainer choresList={this.props.choresList} />
     );
   }
 
   render() {
     console.log(this.props);
-    const renderContainer = this.setParent(true);
+    const renderContainer = this.setParent(false);
     return (
       <div>
         {/* <ParentContainer />
