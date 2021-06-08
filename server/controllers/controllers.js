@@ -1,5 +1,5 @@
-import choreController from 'choreController.js';
-import userController from 'userController.js';
+const choreController = require('./choreController');
+const userController = require('./userController.js');
 
 module.exports = {
   choreController,

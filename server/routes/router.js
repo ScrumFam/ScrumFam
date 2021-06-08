@@ -1,5 +1,5 @@
-import * as choreRouter from 'choreRouter';
-import * as choreRouter from 'userRouter';
+const choreRouter = require('./choreRouter');
+const userRouter = require('./userRouter');
 
 
 
