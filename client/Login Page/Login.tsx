@@ -94,7 +94,7 @@ export default function SignInSide() {
               name="householdid"
               autoComplete="off"
               autoFocus
-            />  
+            />
             <TextField
               variant="outlined"
               margin="normal"
@@ -138,6 +138,13 @@ export default function SignInSide() {
               <Grid item>
                 <Link to="/signup" variant="body2" style={linkStyle}>
                   {"Don't have an account? Sign Up As Parent"}
+                </Link>
+              </Grid>
+              <Grid item>
+                {/* this home link can be deleted. it is only to test the homepage */}
+                <br/>
+                <Link to="/home" variant="body2" style={linkStyle}>
+                  {"HOME_TEST"}
                 </Link>
               </Grid>
             </Grid>
