@@ -12,6 +12,7 @@ import ParentContainer from "./ParentContainer.jsx";
 const mapStateToProps = (state) => {
   //add pertinent state here
   return {
+    choresList: state.chores.choresList,
     totalChores: state.chores.totalChores,
     totalUsers: state.users.totalUsers,
   };
@@ -30,6 +31,7 @@ class MainContainer extends Component {
     return isParent ? (
       <ParentContainer
         totalChores={this.props.totalChores}
+        choresList={this.props.choresList}
         totalUsers={this.props.totalUsers}
       />
     ) : (

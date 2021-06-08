@@ -6,7 +6,7 @@ import MainContainer from "./containers/MainContainer.jsx";
 
 function App() {
   return (
-    <div className="test_div">
+    <div>
       <BrowserRouter>
         <Switch>
           <Route exact path="/" render={() => <Login />} />
