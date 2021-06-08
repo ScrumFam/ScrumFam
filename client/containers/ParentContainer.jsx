@@ -22,6 +22,7 @@ import * as actions from "../actions/actions";
 
 const mapDispatchToProps = (dispatch) => ({
   addUser: (e) => dispatch(actions.addUserActionCreator(e)),
+  addChore: (e) => dispatch(actions.addChoreActionCreator(e)),
 });
 
 class ParentContainer extends Component {
@@ -35,8 +36,43 @@ class ParentContainer extends Component {
     console.log("*** ParentContainer.jsx", this.props);
 
     return (
-      <div>
-        <h3>Hey it's a parent</h3>
+      <div className="temp-border">
+        <h2 className="scrumfan-heading">ScrumFam!</h2>
+        <h3>PARENT HUB</h3>
+        <h3>Enter a New Task</h3>
+        <input id="chore-description"></input>
+        <p>Select from existing users, or leave unassigned...</p>
+        <label for="users">Assign to:</label>
+        <select name="users" id="users">
+          <option value="Alice">Alice</option>
+          <option value="Billy">Billy</option>
+          <option value="cara">Cara</option>
+          <option value="unassigned">Unassigned Task</option>
+        </select>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            const choreField = document.getElementById("chore-description");
+            const userDropdown = document.getElementById("users");
+            this.props.addChore(...this.props.choresList, {
+              assignedTo: userDropdown.value,
+              description: choreField.value,
+            });
+          }}
+        >
+          Add Chore
+        </button>
+        <h3>CHORES</h3>
+        <ul>
+          <li>Task 1...</li>
+          <li>Task 2...</li>
+          <li>Task 3...</li>
+        </ul>
+        <h3>COMPLETED TASKS FOR REVIEW</h3>
+        <ul>
+          <li>Task 1...</li>
+          <li>Task 2...</li>
+        </ul>
         <button
           onClick={(e) => {
             e.preventDefault();
