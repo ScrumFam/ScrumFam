@@ -52,7 +52,6 @@ const choresReducer = (state = initialState, action) => {
     case types.SUBMIT_CHORE_FOR_REVIEW:
       console.log(action.payload);
       //add this task to the 'chores to review' state array for the corresponding parent user
-
       choresList = state.choresList.slice();
       choresList = choresList.filter((el) => {
         return el.choreId !== action.payload.choreId;
