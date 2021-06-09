@@ -1,7 +1,7 @@
 const { Pool } = require('pg');
 
 
-const PG_URI = process.env.URI;
+const PG_URI = process.env.PG_URI;
 
 
 const pool = new Pool({
@@ -27,19 +27,7 @@ module.exports = {
     return pool.query(text, params, callback);
   }
 };
-pool.query(`INSERT INTO "app_user" VALUES (goat@gmail.com, goat, goat2, 44, true, 40, wash car)`, (err,res) => {
-    if (err) console.log(`Error : ${err}, message: ${err.message}`);
-    console.log('done!');
-})
-
-// const userTableString = 
-//  CREATE TABLE app_user (    
-//     uid  SERIAL UNIQUE PRIMARY KEY,
-//     email VARCHAR(250) UNIQUE,
-//     username VARCHAR(50) UNIQUE NOT NULL,
-//     password VARCHAR(50) NOT NULL,    
-//     household VARCHAR(50),
-//     is_parent BOOLEAN,
-//     balance FLOAT,
-//     active_goal INT 
-//   )
+// pool.query(`INSERT INTO "app_user" VALUES (goat@gmail.com, goat, goat2, 44, true, 40, wash car)`, (err,res) => {
+//     if (err) console.log(`Error : ${err}, message: ${err.message}`);
+//     console.log('done!');
+// })
