@@ -1,0 +1,4 @@
+- Drop the unique username constraint
+- Add a unique Username + Household constraint
+- Refactor Goals in the DB
+- 
