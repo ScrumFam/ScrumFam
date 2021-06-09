@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions/actions";
 import ParentChoreTable from "./../components/Parents/ParentChoreTable.jsx"
+import AddChoreContainer from "../components/Parents/AddChoreContainer.jsx"
 /**
  * Approach:
  * add task:
@@ -39,10 +40,11 @@ class ParentContainer extends Component {
     console.log("*** ParentContainer.jsx", this.props);
 
     return (
-      <div className="temp-border">
+      <div className="parentContainer">
         <h2 className="scrumfan-heading">ScrumFam!</h2>
-        <h3>PARENT HUB</h3>
-        <h4>Add Child</h4>
+        {/* <h3>PARENT HUB</h3> */}
+        <AddChoreContainer />
+        {/* <h4>Add Child</h4>
         <input id="add-child-username"></input>
         <input type="password" id="add-child-password"></input>
         <button
@@ -82,10 +84,10 @@ class ParentContainer extends Component {
           }}
         >
           Add Chore
-        </button>
-        <h3>CHORES</h3>
+        </button> */}
+        {/* <h3>CHORES</h3> */}
         <ParentChoreTable />
-        <h3>COMPLETED TASKS FOR REVIEW</h3>
+        {/* <h3>COMPLETED TASKS FOR REVIEW</h3>
         <ul>
           <li>Task 1...</li>
           <li>Task 2...</li>
@@ -97,7 +99,7 @@ class ParentContainer extends Component {
           }}
         >
           Click to increase users
-        </button>
+        </button> */}
       </div>
     );
   }
