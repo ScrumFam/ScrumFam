@@ -1,9 +1,45 @@
 import * as types from "../constants/actionTypes";
 
-export const addChoreActionCreator = (chore) => ({
-  type: types.ADD_CHORE,
-  payload: chore,
-});
+export function addChoreActionCreator(chore) {
+  console.log("inside add chore action creator");
+  console.log(chore);
+  return function (dispatch, getState) {
+    return fetch("/chores", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(chore),
+    })
+      .then((data) => data.json())
+      .then((data) => {
+        console.log(`here's the data ${data}`);
+        dispatch({
+          type: types.ADD_CHORE,
+          payload: data,
+        });
+      })
+      .catch((error) =>
+        console.log(`error in addChoreActionCreator: ${error}`)
+      );
+  };
+}
+
+export function updateChoresActionCreator(chore) {
+  console.log("inside this function");
+  return function (dispatch, getState) {
+    return fetch("/chores")
+      .then((data) => data.json())
+      .then((data) => {
+        console.log(`here's the data ${data}`);
+        dispatch({
+          type: types.ALLAN_TEST,
+          payload: data,
+        });
+      })
+      .catch((error) => console.log(`there's an error: ${error}`));
+  };
+}
 
 export const addGoalActionCreator = (goal) => ({
   type: types.ADD_GOAL,

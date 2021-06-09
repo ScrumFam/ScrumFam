@@ -1,11 +1,21 @@
 const db = require("../database/connections");
+
 const choreController = {
-  getChores(req, res, next) {
+  async getChores(req, res, next) {
     console.log("inside the getChores controller");
-    async function test() {
-      await db.query(`SELECT * FROM app_user;`);
+    try {
+      const test = await db.query(`SELECT * FROM chore;`);
+      console.log(test);
+      res.locals.chores = test;
+      next();
+    } catch (err) {
+      console.log(err);
     }
-    test();
+  },
+
+  addChore(req, res, next) {
+    console.log("inside the addChore controller");
   },
 };
+
 module.exports = choreController;

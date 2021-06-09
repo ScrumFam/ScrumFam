@@ -61,6 +61,15 @@
   border-style: solid;
   padding: 0.5rem;
 }
+.linkContainer {
+  // margin-right: 0;
+  position: absolute;
+  right: 20;
+}
+
+.relativeContainer {
+  position: relative;
+}
 
 .navBarLinks:hover {
   background-color: #3f51b5;
@@ -79,4 +88,53 @@
 
 .MuiSelect-select {
   width: 2rem;
+}
+
+.adminContainer {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  // grid-template-columns: repeat(12, 1fr);
+  // grid-template-rows: repeat(12, 1fr);
+  place-items: center;
+  background-color: #fafafa;
+}
+
+.parentsChildContainer {
+  width: 80vw;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  // background-color: yellow;
+  // grid-column: 3 / 4;
+  // grid-row: 3 / 4;
+}
+.userBox {
+  // background-color: green;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  width: 20vw;
+  height: 35vh;
+  // border: 1;
+  // border-width: 0.25rem;
+  // border-style: solid;
+  // border-color: green;
+  border-radius: 20px;
+  box-shadow: 0 7px 30px -10px rgba(150, 170, 180, 0.5);
+}
+
+.images {
+  border-radius: 50%;
+}
+
+.btn {
+  background-color: white;
+  border-style: none;
 }
