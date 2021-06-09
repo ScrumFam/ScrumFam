@@ -40,8 +40,8 @@ const rows = [
 
 export default function ParentChoretable () {
   return (
-    <div className='tableContainer' style={{ width: '100%', height: '100%'}}>
+    <div className="tableContainer" style={{ width: "100%", height: "100%" }}>
       <DataGrid rows={rows} columns={columns} pageSize={5} checkboxSelection />
     </div>
-  )
+  );
 }
