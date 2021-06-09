@@ -1,6 +1,6 @@
 const db = require('./connections');
 
-const addUserToDB = async (userObj) => {
+const addUser = async (userObj) => {
   console.log('addUser to DB query');
   
   const { username, household, password } = userObj;
@@ -25,5 +25,5 @@ const getUsersFromHouse = async (house) => {
 }
 
 module.exports= {
-  addUserToDB,
+  addUser,
 }
