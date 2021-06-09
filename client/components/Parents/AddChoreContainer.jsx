@@ -53,13 +53,14 @@ const AddChoreContainer = () => {
    
 
     return (
-      <div className='addChoreContainer'>
+      <div className="addChoreContainer">
+        <h2 className="scrumfan-heading">ScrumFam!</h2>
         <TextField
           id="addChore"
           label="Chore Description"
           style={{ margin: 8 }}
           placeholder="Please write your chore description"
-        //   helperText="can be use to provide extra info under the input field"
+          //   helperText="can be use to provide extra info under the input field"
           fullWidth
           margin="normal"
           InputLabelProps={{
@@ -67,31 +68,31 @@ const AddChoreContainer = () => {
           }}
           variant="outlined"
         />
-        <div className='subAdd'>
-        <TextField
-          id="reward"
-          label="Reward"
-          placeholder="Reward for that chore"
-          variant="outlined"
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-        <TextField
-          id="assignTo"
-          select
-          label="Assign to"
-          value={child}
-          className={classes.textField}
-          onChange={handleChange}
-          variant="outlined"
-        >
-          {childs.map((option) => (
-            <MenuItem key={option.name} value={option.name}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
+        <div className="subAdd">
+          <TextField
+            id="reward"
+            label="Reward"
+            placeholder="Reward for that chore"
+            variant="outlined"
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+          <TextField
+            id="assignTo"
+            select
+            label="Assign to"
+            value={child}
+            className={classes.textField}
+            onChange={handleChange}
+            variant="outlined"
+          >
+            {childs.map((option) => (
+              <MenuItem key={option.name} value={option.name}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
         </div>
         <Button variant="outlined" size="large" color="primary">
           ADD CHORE

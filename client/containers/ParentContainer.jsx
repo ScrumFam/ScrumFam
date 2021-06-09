@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import * as actions from "../actions/actions";
 import ParentChoreTable from "./../components/Parents/ParentChoreTable.jsx"
 import AddChoreContainer from "../components/Parents/AddChoreContainer.jsx"
+import ParentNavBar from "../components/Parents/ParentNavBar.jsx";
 /**
  * Approach:
  * add task:
@@ -41,8 +42,10 @@ class ParentContainer extends Component {
 
     return (
       <div className="parentContainer">
-        <h2 className="scrumfan-heading">ScrumFam!</h2>
+        <ParentNavBar />
+        {/* <h2 className="scrumfan-heading">ScrumFam!</h2> */}
         {/* <h3>PARENT HUB</h3> */}
+     
         <AddChoreContainer />
         {/* <h4>Add Child</h4>
         <input id="add-child-username"></input>
