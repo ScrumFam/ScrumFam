@@ -13,6 +13,10 @@ const addUser = async (userObj) => {
   return userId;
 }
 
+const getUsersFromHouse = async (house) => {
+  
+}
+
 module.exports= {
   addUser,
 }
