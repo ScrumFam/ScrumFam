@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-
+const database = require('../database/database');
 
 const authController = {};
 
