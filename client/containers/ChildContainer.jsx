@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
+import * as actions from "../actions/actions";
 /**
  * Approach:
  * complete task:
@@ -11,7 +11,8 @@ import { connect } from "react-redux";
  */
 const mapDispatchToProps = (dispatch) => ({
   addGoal: (e) => dispatch(actions.addGoalActionCreator(e)),
-  submitChore: (e) => dispatch(actions.submitChoreActionCreator(e)),
+  submitChoreForReview: (e) =>
+    dispatch(actions.submitChoreForReviewActionCreator(e)),
 });
 
 class ChildContainer extends Component {
@@ -34,10 +35,22 @@ class ChildContainer extends Component {
     for (let i = 0; i < this.props.choresList.length; i++) {
       listOfChores.push(
         <li key={i} id={`chore_${i}`}>
+          <input
+            type="checkbox"
+            id={`checkbox-${i}`}
+            onClick={() => {
+              const box = document.getElementById(`checkbox-${i}`);
+              if (box.checked) {
+                //adding a setTimeout so the user can see that the box has been checked briefly
+                this.props.submitChoreForReview(this.props.choresList[i]);
+                box.checked = false;
+              }
+            }}
+          ></input>
           {this.props.choresList[i].description}
-          <button id="submitChore" onClick={() => this.props.submitChore}>
-            Submit
-          </button>
+          <span className="chore-reward">
+            ${this.props.choresList[i].reward}
+          </span>
         </li>
       );
     }
@@ -48,7 +61,7 @@ class ChildContainer extends Component {
         <h3>KIDS HUB</h3>
 
         <h3>CHORES</h3>
-        <ul>{listOfChores}</ul>
+        <ul className="chores-list">{listOfChores}</ul>
 
         <h3>GOALS</h3>
         <h4>Your Goals</h4>
@@ -78,4 +91,4 @@ class ChildContainer extends Component {
   }
 }
 
-export default ChildContainer;
+export default connect(null, mapDispatchToProps)(ChildContainer);

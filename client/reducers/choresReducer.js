@@ -3,7 +3,19 @@ import * as types from "../constants/actionTypes";
 const initialState = {
   totalChores: 0,
   choresList: [
-    { choreId: 1, description: "Mow the lawn", assignedTo: "Billy" },
+    { choreId: 1, description: "Mow the lawn", assignedTo: "Billy", reward: 3 },
+    {
+      choreId: 2,
+      description: "Do the dishes",
+      assignedTo: "Billy",
+      reward: 1,
+    },
+    {
+      choreId: 3,
+      description: "Finish book report",
+      assignedTo: "Billy",
+      reward: 2,
+    },
   ],
   lastChoreId: 10000,
   newChoreDescription: "",
@@ -36,6 +48,20 @@ const choresReducer = (state = initialState, action) => {
         lastChoreId,
         totalChores,
       };
+
+    case types.SUBMIT_CHORE_FOR_REVIEW:
+      console.log(action.payload);
+      //add this task to the 'chores to review' state array for the corresponding parent user
+
+      choresList = state.choresList.slice();
+      choresList = choresList.filter((el) => {
+        return el.choreId !== action.payload.choreId;
+      });
+      return {
+        ...state,
+        choresList,
+      };
+
     //     case types.ADD_CARD:
     //       console.log(marketArr);
     //       console.log(action.payload);
