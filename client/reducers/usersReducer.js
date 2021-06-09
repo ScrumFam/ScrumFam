@@ -32,7 +32,7 @@ const usersReducer = (state = initialState, action) => {
       const newUser = {
         userId: lastUserId,
         //unsure about action.payload here...
-        name: action.payload,
+        name: action.payload.name,
       };
       //       // push the new user onto a copy of the users list
       usersList = state.usersList.slice();
