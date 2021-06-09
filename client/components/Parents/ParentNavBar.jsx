@@ -39,15 +39,11 @@ export default function ParentNavBar() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            News
-          </Typography>
-          <Link to="/adminPanel" style={buttonStyle}>
-            <div className='navBarLinks' >Add Child</div>
-          </Link>
+          <div className="linkContainer">
+            <Link className='relativeContainer' to="/adminPanel" style={buttonStyle}>
+              <div className='navBarLinks' >Add Child</div>
+            </Link>
+          </div>
         </Toolbar>
       </AppBar>
     </div>

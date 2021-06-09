@@ -17,13 +17,17 @@ const addUser = async (userObj) => {
   }catch(err){
     console.log(err);
   }
-}
+};
   
 
-const getUsersFromHouse = async (house) => {
-  
-}
+// const getUser = async (specificUser) => {
+//   console.log('made it to the getuser query');
+//   const { userID } = specificUser;
+//   const query = `
+//   SELECT FROM `
+// }
 
-module.exports= {
+module.exports = {
   addUser,
+  // getUser,
 }
