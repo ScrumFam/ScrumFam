@@ -61,6 +61,13 @@ const choresReducer = (state = initialState, action) => {
         choresList,
       };
 
+    case types.ALLAN_TEST:
+      console.log("ACTION PAYLOAD COMING UP");
+      console.log(action.payload);
+      return {
+        state,
+      };
+
     //     case types.ADD_CARD:
     //       console.log(marketArr);
     //       console.log(action.payload);
