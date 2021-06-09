@@ -30,7 +30,7 @@ router.get('/house/:householdName',
 //  - format response object
 //  - respond w/ userObj
 router.get('/:userId',
-  userController.getUser,  
+  // userController.getUser,  
   (req, res) => res.json({})
 );
 
