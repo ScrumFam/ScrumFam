@@ -14,16 +14,6 @@ module.exports = function(database) {
   //Serving up the styles sheet
   app.use('/assets', express.static(path.join(__dirname, './../assets')));
   
-  app.post('/users', async (req, res) => {
-    const { username, password } = req.body
-    
-    const userId = await database.createUser(username, password);
-    
-    if (!password || !username) return res.sendStatus(400);
-    
-    res.json({ userId })
-  });
-  
   /* FOR PRODUCTION ONLY
   if (process.env.NODE_ENV === 'production') {
     // statically serve everything in the build folder on the route '/build'
@@ -35,8 +25,8 @@ module.exports = function(database) {
   }
   */
   
-  app.use('/chore', choreRouter);
-  app.use('/user', userRouter);
+  app.use('/chores', choreRouter);
+  app.use('/users', userRouter);
   
   // Globally serve index.html for all routes 
   app.get('*', (req, res) => {
