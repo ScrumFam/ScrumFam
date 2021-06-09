@@ -24,3 +24,8 @@ export const addUserActionCreator = (user) => ({
   type: types.ADD_USER,
   payload: user,
 });
+
+export const submitChoreForReviewActionCreator = (chore) => ({
+  type: types.SUBMIT_CHORE_FOR_REVIEW,
+  payload: chore,
+});
