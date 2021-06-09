@@ -2,7 +2,6 @@
 
 -- //TABLE SCHEMA
 
-
  CREATE TABLE app_user (    
     id  SERIAL UNIQUE,
     email VARCHAR(250) UNIQUE,

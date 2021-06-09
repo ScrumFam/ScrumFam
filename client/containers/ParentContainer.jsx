@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions/actions";
-import ParentChoreTable from "./../components/Parents/ParentChoreTable.jsx"
-import AddChoreContainer from "../components/Parents/AddChoreContainer.jsx"
+import ParentChoreTable from "./../components/Parents/ParentChoreTable.jsx";
+import AddChoreContainer from "../components/Parents/AddChoreContainer.jsx";
 import ParentNavBar from "../components/Parents/ParentNavBar.jsx";
 /**
  * Approach:
@@ -22,12 +22,13 @@ import ParentNavBar from "../components/Parents/ParentNavBar.jsx";
  *    GET request for open tasks in the households
  */
 
-
 // --------------------------------------------------------------------------------------------- //
 
 const mapDispatchToProps = (dispatch) => ({
   addUser: (e) => dispatch(actions.addUserActionCreator(e)),
   addChore: (e) => dispatch(actions.addChoreActionCreator(e)),
+  // updateChores is a test route, you can ignore...
+  updateChores: (e) => dispatch(actions.updateChoresActionCreator(e)),
 });
 
 class ParentContainer extends Component {
@@ -43,10 +44,19 @@ class ParentContainer extends Component {
     return (
       <div className="parentContainer">
         <ParentNavBar />
-        {/* <h2 className="scrumfan-heading">ScrumFam!</h2> */}
+        <button
+          className="scrumfan-heading"
+          onClick={(e) => {
+            e.preventDefault();
+            console.log("WORKING!");
+            this.props.updateChores({ test: "hey!" });
+          }}
+        >
+          Thunk Test
+        </button>
         {/* <h3>PARENT HUB</h3> */}
-     
-        <AddChoreContainer />
+
+        <AddChoreContainer addChore={this.props.addChore} />
         {/* <h4>Add Child</h4>
         <input id="add-child-username"></input>
         <input type="password" id="add-child-password"></input>
