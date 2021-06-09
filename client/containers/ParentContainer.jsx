@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions/actions";
-
+import ParentChoreTable from "./../components/Parents/ParentChoreTable.jsx"
 /**
  * Approach:
  * add task:
@@ -19,6 +19,9 @@ import * as actions from "../actions/actions";
  *  View open tasks
  *    GET request for open tasks in the households
  */
+
+
+// --------------------------------------------------------------------------------------------- //
 
 const mapDispatchToProps = (dispatch) => ({
   addUser: (e) => dispatch(actions.addUserActionCreator(e)),
@@ -81,11 +84,7 @@ class ParentContainer extends Component {
           Add Chore
         </button>
         <h3>CHORES</h3>
-        <ul>
-          <li>Task 1...</li>
-          <li>Task 2...</li>
-          <li>Task 3...</li>
-        </ul>
+        <ParentChoreTable />
         <h3>COMPLETED TASKS FOR REVIEW</h3>
         <ul>
           <li>Task 1...</li>
