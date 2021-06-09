@@ -41,7 +41,7 @@ class MainContainer extends Component {
 
   render() {
     console.log(this.props);
-    const renderContainer = this.setParent(false);
+    const renderContainer = this.setParent(true);
     return (
       <div>
         {/* <ParentContainer />
