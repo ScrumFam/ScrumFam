@@ -10,24 +10,19 @@ module.exports = {
     path: path.resolve(__dirname, "./build"),
     filename: "bundle.js",
   },
-  devtool: "source-map",
-  resolve: {
-    extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"],
-  },
   module: {
     rules: [
-      {
-        test: /\.(t|j)sx?$/,
-        use: { loader: "ts-loader" },
+       {
+        test: /\.jsx?/,
         exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+            plugins: ['@babel/transform-runtime']
+          }
+        }
       },
-      {
-        enforce: "pre",
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: "source-map-loader",
-      },
-      { test: /\.js$/, loader: "source-map-loader" },
       {
         test: /\.s[ac]ss$/i,
         use: ["style-loader", "css-loader", "sass-loader"],
