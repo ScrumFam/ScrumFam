@@ -216,7 +216,7 @@ const refreshSession = async (ssid) => {
 }
 
 const addUser = async (userObj) => {
-
+  console.log(`***database.addUser`, userObj)
   try{
     const validProps = {'email': true, 'username': true, 'password': true, 'household': true, 'is_parent': true, 'balance': true, 'active_goal': true, 'created_at': true};
     const { values, fields, vals } = buildQueryComponents(userObj, validProps);
