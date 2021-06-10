@@ -1,9 +1,12 @@
 const bcrypt = require('bcrypt');
-const database = require('../database/database');
+// const database = require('../database/database');
 
-const userController = {
 
-  async addUser(req, res, next){
+module.exports = (database) => {
+  
+  const userController = {};
+
+  userController.addUser = async (req, res, next) => {
 
     console.log('add User Controller');
     const { username, household, password } = req.body;
@@ -11,18 +14,19 @@ const userController = {
     if (!password || !username) return res.status(400).json('missing username or pw');
 
     try{ 
-      await bcrypt.hash(password, 10, async (err, hash) => {
-        res.locals.user = await database.addUser({ username, household, hash });
+        await bcrypt.hash(password, 10, async (err, hash) => {
+          console.log(hash)
+          res.locals.user = await database.addUser({ username, household, hash });
+          return next();
       });
-      // add user to DB and responds with full user object
-      return next();
+    // add user to DB and responds with full user object
     }catch(err){
       next({
         log: err.stack,
         message: {err: 'Error adding user. See server Logs'}
       });
     }
-  },
+  }
 
 //   async getUser(req, res, next){
 //     console.log('made it to the user controller');
@@ -36,9 +40,8 @@ const userController = {
 //     return next();
 //   },
 
- };
-
-
+  return userController;
+};
 
 
 // '/users' -> all the actions relating to users and households
@@ -51,4 +54,3 @@ const userController = {
 // Update a user settings (active_goal, password) (PATCH '/users/:userId')
 // Update balance ("spend" money) (PUT '/users/:userId/balance/`
 
-module.exports = userController;

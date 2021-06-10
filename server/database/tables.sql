@@ -6,7 +6,7 @@
     id  SERIAL UNIQUE,
     email VARCHAR(250) UNIQUE,
     username VARCHAR(50) UNIQUE NOT NULL,
-    "password" VARCHAR(50) NOT NULL,    
+    "password" VARCHAR(255) NOT NULL,    
     household VARCHAR(50),
     is_parent BOOLEAN,
     balance FLOAT,
