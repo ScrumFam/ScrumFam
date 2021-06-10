@@ -2,7 +2,6 @@ const { Router } = require("express");
 const router = Router();
 
 module.exports = (database) => {
-
   const choreController = require("../controllers/choreController")(database);
 
   // /chores
@@ -10,14 +9,14 @@ module.exports = (database) => {
   //  - DB fucntion to add the chore
   //  - format response object
   //  - Respond w/ the user object
-router.post("/", choreController.addChore, (req, res) => {
-  console.log(
-    "inside the post route for the chore router. About to dispatch..."
-  );
-  // Please note - 'chore' is singular here!
-  console.log(res.locals.chore);
-  res.json(res.locals.chore);
-});
+  router.post("/", choreController.addChore, (req, res) => {
+    console.log(
+      "inside the post route for the chore router. About to dispatch..."
+    );
+    // Please note - 'chore' is singular here!
+    console.log(res.locals.chore);
+    res.json(res.locals.chore);
+  });
 
   //ALLAN THUNK TEST
   router.get("/", choreController.getChores, (req, res) => {
@@ -67,14 +66,29 @@ router.post("/", choreController.addChore, (req, res) => {
   //   - authorize that the user is the one assigned OR parent of household OR member of household if unassigned
   //  - DB call to update chore status w/ completed_at timestamp
   //  - respond w/ sucess message
-  router.patch("/:choreId/complete", (req, res) => res.json({}));
+  router.patch(
+    "/:choreId/complete",
+    choreController.verifyChore,
+    (req, res) => {
+      console.log(
+        "inside the patch route for the chore router. About to dispatch..."
+      );
+      // Please note - 'chore' is singular here!
+      console.log(res.locals.chore);
+      res.json(res.locals.chore);
+    }
+  );
 
   // mark Chore incomplete
   // middleware:
   //  - authorize that the user is the one assigned OR parent of household OR member of household if unassigned
   //  - DB call to update chore status w/ null for completed_at
   //  - respond w/ sucess message
-  router.patch("/:choreId/undoComplete", (req, res) => res.json({}));
+  router.patch(
+    "/:choreId/undoComplete",
+
+    (req, res) => res.json({})
+  );
 
   // assign a chore the users account balance
   // middleware:
@@ -85,5 +99,4 @@ router.post("/", choreController.addChore, (req, res) => {
   router.put("/:choreId/assign/:userId", (req, res) => res.jsom({}));
 
   return router;
-
-}
+};

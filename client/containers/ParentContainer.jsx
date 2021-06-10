@@ -31,6 +31,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) => ({
   addUser: (e) => dispatch(actions.addUserActionCreator(e)),
   addChore: (e) => dispatch(actions.addChoreActionCreator(e)),
+  verifyChore: (e) => dispatch(actions.verifyChoreActionCreator(e)),
   // updateChores is a test route, you can ignore...
   // updateChores: (e) => dispatch(actions.updateChoresActionCreator(e)),
 });
@@ -103,7 +104,10 @@ class ParentContainer extends Component {
           Add Chore
         </button> */}
         {/* <h3>CHORES</h3> */}
-        <ParentChoreTable choresList={this.props.choresList} />
+        <ParentChoreTable
+          choresList={this.props.choresList}
+          verifyChore={this.props.verifyChore}
+        />
         {/* <h3>COMPLETED TASKS FOR REVIEW</h3>
         <ul>
           <li>Task 1...</li>
