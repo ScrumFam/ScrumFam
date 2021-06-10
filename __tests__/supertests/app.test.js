@@ -22,8 +22,10 @@ describe("POST /users", () => {
       
       for (const body of bodyArr){
         addUser.mockReset();
+        bcrypt.hash.mockReset();
         await request(app).post('/users').send(body);
         expect(addUser.mock.calls.length).toBe(1);
+        expect(bcrypt.hash.mock.calls.length).toBe(1);
         expect(addUser.mock.calls[0][0]).toBe(body.username);
         expect(addUser.mock.calls[0][1]).toBe(body.household);
         expect(addUser.mock.calls[0][1]).toBe(body.password);

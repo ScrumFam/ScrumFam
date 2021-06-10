@@ -47,6 +47,13 @@ CREATE TABLE goal (
    CONSTRAINT "goal_pk" PRIMARY KEY ("id") 
 );
 
+CREATE TABLE "session" (
+  "ssid" VARCHAR(50) UNIQUE NOT NULL,
+  "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  "valid_until" TIMESTAMP DEFAULT (CURRENT_TIMESTAMP + INTERVAL '20 minutes') NOT NULL,
+  CONSTRAINT "ssid_pk" PRIMARY KEY ("ssid") 
+);
+
 ALTER TABLE app_user ADD CONSTRAINT "app_user_fk0" FOREIGN KEY ("household") REFERENCES household("name");
 ALTER TABLE app_user ADD CONSTRAINT "app_user_fk1" FOREIGN KEY ("active_goal") REFERENCES goal("id");
 ALTER TABLE chore ADD CONSTRAINT "chore_fk0" FOREIGN KEY ("created_by") REFERENCES app_user("id");

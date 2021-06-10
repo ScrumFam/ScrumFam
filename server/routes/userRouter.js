@@ -5,6 +5,8 @@ const router = Router();
 module.exports = (database) => {
 
   const userController = require('../controllers/userController')(database)
+  const cookieController = require('../controllers/cookieController')(database)
+  const sessionController = require('../controllers/sessionController')(database)
   // '/users/
   // middleware:
   //  - house hold authorization?????
@@ -14,6 +16,15 @@ module.exports = (database) => {
   router.post('/', 
     userController.addUser, 
     (req, res) => res.json(res.locals.user)
+  );
+
+  router.post('/login',
+    userController.verifyPassword,
+    cookieController.setCookie,
+    cookieController.setSSIDCookie,
+    sessionController.startSession,
+    sessionController.isLoggedIn,
+    (req, res) => res.json({message: 'user is now logged in'})
   );
 
   // Get all users for a household
@@ -45,6 +56,7 @@ module.exports = (database) => {
   //  - format response object
   //  - Respond w/ success or error  
   router.delete('/:userId',
+    userController.deleteUser,  
     // userController.deleteUser,  
     (req, res) => res.status(200).send('All good, deleted one')
   );
@@ -55,8 +67,9 @@ module.exports = (database) => {
   //  - DB call to update the user table
   //  - format response object
   //  - respond w/ updated userObj
-  router.patch('/:userId', 
-    (req, res) => res.json({})
+  router.patch('/:userId',
+    userController.updateUser,
+    (req, res) => res.json("updated password")
   );
 
   // update the users account balance
@@ -65,8 +78,9 @@ module.exports = (database) => {
   //  - DB call to update balance
   //  - format response object
   //  - respond with new balance 
-  router.put('/:userId/balance', 
-    (req, res) => res.jsom({})
+  router.put('/:userId/balance',
+    userController.updateBalance, 
+    (req, res) => res.json(res.locals.newBalance)
   );
     return router
 } 
