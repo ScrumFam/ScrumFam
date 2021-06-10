@@ -39,7 +39,7 @@ const initialState = {
       id: "3",
       assignedTo: "Russ",
       reward: "$5",
-      status: "Completed",
+      status: "For Review",
       dateCreated: "Mon Jun 07 2021",
       description: "Wash the car",
     },
@@ -51,6 +51,15 @@ const initialState = {
 
 const choresReducer = (state = initialState, action) => {
   let choresList;
+  const statusChecker = () => {
+    if (action.payload.verified_on !== null) {
+      return "Completed";
+    } else if (action.payload.completed_on !== null) {
+      return "Awaiting Review";
+    } else {
+      return "Pending";
+    }
+  };
 
   switch (action.type) {
     case types.ADD_CHORE:
@@ -63,15 +72,7 @@ const choresReducer = (state = initialState, action) => {
         id: lastChoreId,
         assignedTo: action.payload.assigned_to,
         reward: action.payload.reward,
-        status: () => {
-          if (action.payload.verified_on !== null) {
-            return "Completed";
-          } else if (action.payload.completed_on !== null) {
-            return "Awaiting Review";
-          } else {
-            return "Pending";
-          }
-        },
+        status: statusChecker(),
         //not sure about this action.payload here...hangover from MegarMarkets
         description: action.payload.description,
         dateCreated: action.payload.created_at,
