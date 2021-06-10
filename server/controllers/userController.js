@@ -16,6 +16,8 @@ module.exports = (database) => {
         bcrypt.hash(password, 10, async (err, hash) => {
           if (err) return next({log: `Error encrypting password ${err}`})
           req.body.password = hash;
+          const householdAdded = await database.createHousehold(household);
+          if (!householdAdded) return res.status(200).json({message: 'household name is already exists'});
           res.locals.user = await database.addUser(req.body);
           return next();
         });
@@ -38,7 +40,7 @@ module.exports = (database) => {
       await bcrypt.compare(password, hashedPass, (err, isMatch) => {
         if (err) return next({log: `Error verifying password ${err}`})
         if (!isMatch) return res.json({message: "information does not match"})
-        return next()
+        return next();
       }) 
     }catch(err){
       return next({

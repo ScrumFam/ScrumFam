@@ -23,7 +23,11 @@ module.exports = (database) => {
   // );
 
   router.post('/', 
-    userController.addUser, 
+    userController.addUser,
+    cookieController.setCookie,
+    cookieController.setSSIDCookie,
+    sessionController.startSession,
+    sessionController.isLoggedIn, 
     (req, res) => res.json(res.locals.user)
   );
 

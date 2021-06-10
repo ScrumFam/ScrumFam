@@ -1,123 +1,6 @@
 const db = require("./connections");
 
-// const camelToSnake = (str) => {
-//   str
-//     .split(/(?=[A-Z])/)
-//     .join("_")
-//     .toLowerCase();
-//   };
 
-// const buildQueryComponents = (obj, validProps) => {
-//   const props = Object.keys(obj);
-//   const first = props.pop();
-//   const values = [obj[first]];
-//   let fields = `${first}`;
-//   let vals = "$1";
-
-//   props.forEach((prop, i) => {
-//     prop = camelToSnake(prop);
-//     if (validProps[prop]) {
-//       fields += `, ${prop}`;
-//       vals += `, $${i + 2}`;
-//       values.push(obj[prop]);
-//     }
-//   });
-
-//   return { values, fields, vals };
-// };
-
-// const startSession = async (ssid) => {
-//   console.log("starting Session");
-//   try {
-//     const query = `
-//     INSERT INTO "session" (ssid, created_at, valid_until)
-//     VALUES ($1, $2, $3)
-//     `;
-//     const currentTime = new Date();
-//     const expireTime = new Date(currentTime.getTime() + 1200000);
-//     const values = [ssid, currentTime, expireTime];
-
-//     console.log(values);
-
-//     await db.query(query, values);
-
-//     console.log("session created: ", ssid);
-//     return;
-//   } catch (err) {
-//     // return new Error(err)
-//     console.log(err);
-//   }
-// };
-
-// const retrieveSession = async (ssid) => {
-//   try {
-//     const query = `
-//     SELECT * FROM "session" WHERE "ssid" = $1
-//     `;
-//     const values = [ssid];
-
-//     const response = await db.query(query, values);
-//     return response.rows[0];
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
-// const clearSession = async (ssid) => {
-//   try {
-//     const query = `
-//     DELETE FROM "session" WHERE "ssid" = $1
-//     `;
-//     const values = [ssid];
-
-//     const response = await db.query(query, values);
-//     console.log(`session deleted: ${ssid}`);
-//     return;
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
-// const refreshSession = async (ssid) => {
-//   try {
-//     const query = `
-//     UPDATE "session"
-//     SET valid_until = $2
-//     WHERE "ssid" = $1;
-//     `;
-
-//     //create a timestamp 20 minutes from now.
-//     const currentMillis = new Date().getTime();
-//     const timestamp = new Date(currentMillis + 1200000);
-
-//     const values = [ssid, timestamp];
-
-//     const response = await db.query(query, values);
-//     console.log(`session refreshed: ${ssid}`);
-//     return;
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
-// const addUser = async (userObj) => {
-//   try {
-//     const validProps = {
-//       email: true,
-//       username: true,
-//       password: true,
-//       household: true,
-//       is_parent: true,
-//       balance: true,
-//       active_goal: true,
-//       created_at: true,
-//     };
-//     const { values, fields, vals } = buildQueryComponents(userObj, validProps);
-
-//     const query = `
-//     INSERT INTO app_user (${fields})
-//     VALUES (${vals})
-//     RETURNING *`;
 
 const camelToSnake = (str) =>
   str
@@ -218,6 +101,22 @@ const refreshSession = async (ssid) => {
   }
 };
 
+const isParent = async (userId) => {
+  
+  const query = `
+    SELECT "is_parent" FROM "app_user"
+    WHERE id = $1;
+  `
+  const values = [userId];
+
+  const response = await db.query(query, values);
+
+  console.log(reponse);
+
+  return response.rows[0].is_parent;
+}
+
+
 const addUser = async (userObj) => {
   try {
     const validProps = {
@@ -258,7 +157,7 @@ const getUserPassword = async (username, household) => {
 const getUser = async (userId) => {
   console.log("made it to the getuser query");
   const query = `
-  SELECT * FROM app_user  
+  SELECT * FROM app_user
   WHERE id = $1`;
   const value = [userId];
   try {
@@ -392,6 +291,25 @@ const verifyChore = async (choreId) => {
   }
 };
 
+const createHousehold = async (houseName) => {
+  
+  try{
+    const query = `
+    INSERT INTO household ("name")
+    VALUES ($1)
+    RETURNING *`;
+  
+    const response = await db.query(query, [houseName]);
+    console.log(response);
+  
+    const household = response.rows[0];
+  
+    return household;
+  }catch(err){
+    console.log('ERROR:', err.message);
+  }
+}
+
 const addChore = async ({
   created_by,
   assigned_to,
@@ -421,6 +339,7 @@ const addChore = async ({
 
 module.exports = {
   addUser,
+  createHousehold,
   getUser,
   addChore,
   getAllUsers,
