@@ -10,6 +10,14 @@ module.exports = (database) => {
   //  - DB fucntion to add the chore
   //  - format response object
   //  - Respond w/ the user object
+router.post("/", choreController.addChore, (req, res) => {
+  console.log(
+    "inside the post route for the chore router. About to dispatch..."
+  );
+  // Please note - 'chore' is singular here!
+  console.log(res.locals.chore);
+  res.json(res.locals.chore);
+});
 
   //ALLAN THUNK TEST
   router.get("/", choreController.getChores, (req, res) => {

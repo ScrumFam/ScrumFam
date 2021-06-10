@@ -34,8 +34,8 @@ const columns = [
     headerAlign: "left",
   },
   {
-    field: "dateLastUpdated",
-    headerName: "Date Last Updated",
+    field: "dateCreated",
+    headerName: "Date Created",
     width: 200,
     sortable: false,
     align: "left",
@@ -51,64 +51,32 @@ const columns = [
   },
 ];
 
-const rows = [
-  {
-    id: "1",
-    assignedTo: "David",
-    reward: "$2",
-    status: "Completed",
-    dateLastUpdated: new Date().toDateString(),
-    description: " wash the car and fill it with gas",
-  },
-  {
-    id: "2",
-    assignedTo: "David",
-    reward: "$2",
-    status: "Completed",
-    dateLastUpdated: new Date().toDateString(),
-    description: " wash the car and fill it with gas",
-  },
-  {
-    id: "3",
-    assignedTo: "David",
-    reward: "$2",
-    status: "Completed",
-    dateLastUpdated: new Date().toDateString(),
-    description: " wash the car and fill it with gas",
-  },
-  {
-    id: "3",
-    assignedTo: "David",
-    reward: "$2",
-    status: "Completed",
-    dateLastUpdated: new Date().toDateString(),
-    description: " wash the car and fill it with gas",
-  },
-  {
-    id: "4",
-    assignedTo: "David",
-    reward: "$2",
-    status: "Completed",
-    dateLastUpdated: new Date().toDateString(),
-    description: " wash the car and fill it with gas",
-  },
-  {
-    id: "5",
-    assignedTo: "David",
-    reward: "$2",
-    status: "Completed",
-    dateLastUpdated: new Date().toDateString(),
-    description: " wash the car and fill it with gas",
-  },
-  {
-    id: "6",
-    assignedTo: "David",
-    reward: "$2",
-    status: "Completed",
-    dateLastUpdated: new Date().toDateString(),
-    description: " wash the car and fill it with gas",
-  },
-];
+// const rows = [
+//   {
+//     id: "1",
+//     assignedTo: "Ozi",
+//     reward: "$2",
+//     status: "Completed",
+//     dateLastUpdated: new Date().toDateString(),
+//     description: "Finish Science Report",
+//   },
+//   {
+//     id: "2",
+//     assignedTo: "David",
+//     reward: "$3",
+//     status: "Completed",
+//     dateLastUpdated: new Date().toDateString(),
+//     description: "Give the dog a bath",
+//   },
+//   {
+//     id: "3",
+//     assignedTo: "Russ",
+//     reward: "$5",
+//     status: "Completed",
+//     dateLastUpdated: new Date().toDateString(),
+//     description: "Wash the car",
+//   },
+// ];
 
 // possible boilerplate for iterating over the actual data
 // whole child data coming from object has been looped through
@@ -124,10 +92,16 @@ const rows = [
 // };
 //}
 
-export default function ParentChoretable() {
+export default function ParentChoretable(props) {
+  console.log(props);
   return (
     <div className="tableContainer" style={{ width: "100%", height: "100%" }}>
-      <DataGrid rows={rows} columns={columns} pageSize={5} checkboxSelection />
+      <DataGrid
+        rows={props.choresList}
+        columns={columns}
+        pageSize={5}
+        checkboxSelection
+      />
     </div>
   );
 }

@@ -16,7 +16,12 @@ const choreController = {
   },
 
   addChore(req, res, next) {
+    //wrap in try / catch if doing db call...
     console.log("inside the addChore controller");
+    console.log(req.body);
+    //still unsure how the db hookup happens here - via database.js, and then connections?
+    res.locals.chore = req.body;
+    next();
   },
 };
 

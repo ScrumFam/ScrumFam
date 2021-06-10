@@ -19,14 +19,43 @@ const addUser = async ({ username, household, hash }) => {
 };
   
 
-// const getUser = async (specificUser) => {
-//   console.log('made it to the getuser query');
-//   const { userID } = specificUser;
-//   const query = `
-//   SELECT FROM `
-// }
+const getUser = async (userId) => {
+  console.log('made it to the getuser query'); 
+  const query = `
+  SELECT * FROM app_user
+  WHERE id = $1`
+  const value = [userId];
+  try {
+    const response = await db.query(query, value);
+    console.log(response)
+    const certainUser = response.rows[0];
+    delete certainUser.password;
+    console.log('this is the rows object', certainUser);
+    return certainUser;
+  } catch(err) {
+    console.log(err);
+  }
+};
+
+const getAllUsers = async (householdName) => {
+  console.log('made it to the getAllUsers query');
+  const query = `
+  SELECT * FROM app_user
+  WHERE household = $1`
+  const value = [householdName];
+  try {
+    const response = await db.query(query, value);
+    console.log(response);
+    const allTheUsers = response.rows;
+    delete rows.password;
+    return allTheUsers;
+  } catch(err) {
+    console.log(err);
+  }
+}
 
 module.exports = {
   addUser,
-  // getUser,
+  getUser,
+  getAllUsers,
 }

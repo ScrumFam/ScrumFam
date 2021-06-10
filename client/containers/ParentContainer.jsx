@@ -23,12 +23,16 @@ import ParentNavBar from "../components/Parents/ParentNavBar.jsx";
  */
 
 // --------------------------------------------------------------------------------------------- //
+function mapStateToProps(state) {
+  const { choresList } = state.chores;
+  return { choresList: choresList };
+}
 
 const mapDispatchToProps = (dispatch) => ({
   addUser: (e) => dispatch(actions.addUserActionCreator(e)),
   addChore: (e) => dispatch(actions.addChoreActionCreator(e)),
   // updateChores is a test route, you can ignore...
-  updateChores: (e) => dispatch(actions.updateChoresActionCreator(e)),
+  // updateChores: (e) => dispatch(actions.updateChoresActionCreator(e)),
 });
 
 class ParentContainer extends Component {
@@ -44,7 +48,7 @@ class ParentContainer extends Component {
     return (
       <div className="parentContainer">
         <ParentNavBar />
-        <button
+        {/* <button
           className="scrumfan-heading"
           onClick={(e) => {
             e.preventDefault();
@@ -53,7 +57,7 @@ class ParentContainer extends Component {
           }}
         >
           Thunk Test
-        </button>
+        </button> */}
         {/* <h3>PARENT HUB</h3> */}
 
         <AddChoreContainer addChore={this.props.addChore} />
@@ -99,7 +103,7 @@ class ParentContainer extends Component {
           Add Chore
         </button> */}
         {/* <h3>CHORES</h3> */}
-        <ParentChoreTable />
+        <ParentChoreTable choresList={this.props.choresList} />
         {/* <h3>COMPLETED TASKS FOR REVIEW</h3>
         <ul>
           <li>Task 1...</li>
@@ -118,4 +122,4 @@ class ParentContainer extends Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(ParentContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ParentContainer);

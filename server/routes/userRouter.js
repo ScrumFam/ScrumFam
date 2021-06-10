@@ -2,10 +2,6 @@ const { Router } = require('express');
 // const database = require('../database/database');
 const router = Router();
 
-
-
-
-
 module.exports = (database) => {
 
   const userController = require('../controllers/userController')(database)
@@ -26,8 +22,9 @@ module.exports = (database) => {
   //  - DB fucntion to all the users and their data
   //  - format response object
   //  - Respond w/ success message
-  router.get('/house/:householdName',  
-    (req, res) => res.json({})
+  router.get('/house/:householdName',
+    userController.getAllUsers,    
+    (req, res) => res.json(res.locals.allUsersInHouse)
   );
 
   // Get specific user object
@@ -37,8 +34,8 @@ module.exports = (database) => {
   //  - format response object
   //  - respond w/ userObj
   router.get('/:userId',
-    // userController.getUser,  
-    (req, res) => res.json({})
+    userController.getUser,  
+    (req, res) => res.json(res.locals.singleUser)
   );
 
   // delete user
@@ -47,8 +44,9 @@ module.exports = (database) => {
   //  - DB fucntion to delete the user
   //  - format response object
   //  - Respond w/ success or error  
-  router.delete('/:userId',  
-    (req, res) => res.json({})
+  router.delete('/:userId',
+    userController.deleteUser,  
+    (req, res) => res.status(200).send('All good, deleted one');
   );
 
   // update user settings
