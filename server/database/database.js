@@ -41,7 +41,7 @@ const getUser = async (userId) => {
 const getAllUsers = async (householdName) => {
   console.log('made it to the getAllUsers query');
   const query = `
-  SELECT * FROM app_user
+  SELECT username FROM app_user
   WHERE household = $1`
   const value = [householdName];
   try {
@@ -53,7 +53,7 @@ const getAllUsers = async (householdName) => {
   } catch(err) {
     console.log(err);
   }
-}
+};
 
 module.exports = {
   addUser,
