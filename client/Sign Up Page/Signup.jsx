@@ -52,6 +52,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const signUpObject = {};
+
+const setInputValue = event => {
+  console.log(`***EVENT`, event.target.name)
+  signUpObject[event.target.name] = event.target.value;
+  console.log(`***NEW_AUTH_OBJ:`, signUpObject)
+}
+
+
 export default function SignUp() {
   const classes = useStyles();
 
@@ -62,7 +71,7 @@ export default function SignUp() {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5" style={{color: 'black'}}>
+        <Typography component="h1" variant="h5" style={{ color: "black" }}>
           Sign up
         </Typography>
         <form className={classes.form} noValidate>
@@ -77,6 +86,7 @@ export default function SignUp() {
                 id="firstName"
                 label="First Name"
                 autoFocus
+                onChange={(e) => setInputValue(e)}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -88,6 +98,7 @@ export default function SignUp() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                onChange={(e) => setInputValue(e)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -99,6 +110,7 @@ export default function SignUp() {
                 label="Username"
                 name="username"
                 autoComplete="off"
+                onChange={(e) => setInputValue(e)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -110,6 +122,7 @@ export default function SignUp() {
                 label="Household Id"
                 name="householdId"
                 autoComplete="off"
+                onChange={(e) => setInputValue(e)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -121,6 +134,7 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange={(e) => setInputValue(e)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -133,6 +147,7 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={(e) => setInputValue(e)}
               />
             </Grid>
           </Grid>
