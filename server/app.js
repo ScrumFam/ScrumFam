@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require("path");
+const cookieParser = require('cookie-parser');
 require('dotenv').config();
 // console.log(process.env.TEST_ENV);
 // This port will be used for express and the socket io connection
@@ -14,6 +15,7 @@ module.exports = function(database) {
 
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
+  app.use(cookieParser());
   
   //Serving up the styles sheet
   app.use('/assets', express.static(path.join(__dirname, './../assets')));
