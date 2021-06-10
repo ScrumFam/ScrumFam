@@ -29,7 +29,8 @@ router.get('/house/:householdName',
 //  - DB function to get the user object
 //  - format response object
 //  - respond w/ userObj
-router.get('/:userId',  
+router.get('/:userId',
+  // userController.getUser,  
   (req, res) => res.json({})
 );
 
