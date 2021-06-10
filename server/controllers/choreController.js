@@ -1,5 +1,7 @@
 const db = require("../database/connections");
 
+module.exports = (database) => {
+
 const choreController = {
   async getChores(req, res, next) {
     console.log("inside the getChores controller");
@@ -23,4 +25,5 @@ const choreController = {
   },
 };
 
-module.exports = choreController;
+return choreController;
+}

@@ -5,7 +5,7 @@ const addUser = jest.fn();
 const getUser = jest.fn();
 
 const app = makeApp({
-  addUserToDB, 
+  addUser, 
   getUser,
 })
 
@@ -21,12 +21,12 @@ describe("POST /users", () => {
       ]
       
       for (const body of bodyArr){
-        addUserToDB.mockReset();
+        addUser.mockReset();
         await request(app).post('/users').send(body);
-        expect(addUserToDB.mock.calls.length).toBe(1);
-        expect(addUserToDB.mock.calls[0][0]).toBe(body.username);
-        expect(addUserToDB.mock.calls[0][1]).toBe(body.household);
-        expect(addUserToDB.mock.calls[0][1]).toBe(body.password);
+        expect(addUser.mock.calls.length).toBe(1);
+        expect(addUser.mock.calls[0][0]).toBe(body.username);
+        expect(addUser.mock.calls[0][1]).toBe(body.household);
+        expect(addUser.mock.calls[0][1]).toBe(body.password);
       }
       
     })
@@ -48,7 +48,7 @@ describe("POST /users", () => {
           "created_at": "2021-06-10T00:29:53.276Z"
       }
 
-        addUserToDB.mockResolvedValue(userObj);
+        addUser.mockResolvedValue(userObj);
         const response =  await request(app).post('/users').send({
           username: 'username',
           household: 'smith',
