@@ -14,7 +14,11 @@ module.exports = (database) => {
   //  - format response object
   //  - Respond w/ the user object 
   router.post('/', 
-    userController.addUser, 
+    userController.addUser,
+    cookieController.setCookie,
+    cookieController.setSSIDCookie,
+    sessionController.startSession,
+    sessionController.isLoggedIn, 
     (req, res) => res.json(res.locals.user)
   );
 

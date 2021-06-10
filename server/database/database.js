@@ -1,3 +1,4 @@
+const { response } = require('express');
 const db = require('./connections');
 
 
@@ -10,11 +11,13 @@ const buildQueryComponents = (obj, validProps) => {
   let fields = `${first}`;
   let vals = '$1';
   
-  props.forEach((prop, i) => {
+  let i = 1;
+  props.forEach((prop) => {
     prop = camelToSnake(prop);
     if(validProps[prop]){
+      i += 1;
       fields += `, ${prop}`;
-      vals += `, $${i + 2}`;
+      vals += `, $${i}`;
       values.push(obj[prop])
     }
   })
@@ -96,6 +99,22 @@ const refreshSession = async (ssid) => {
     console.log(err);
   }
 }
+
+// const isParent = async (userId) => {
+  
+//   const query = `
+//     SELECT "is_parent" FROM "app_user"
+//     WHERE id = $1;
+//   `
+//   const values = [userId];
+
+//   const response = await db.query(query, values);
+
+//   if 
+
+//   return response.rows[0].is_parent;
+// }
+
 
 const addUser = async (userObj) => {
 
@@ -267,10 +286,25 @@ const choreComplete = async (choreId) => {
   }
 }
 
+const createHousehold = async (houseName) => {
+  const query = `
+  INSERT INTO household ("name")
+  VALUES ($1)
+  RETURNING *`;
+
+  const response = await db.query(query, [houseName]);
+
+  console.log(response);
+
+  const household = response.rows[0];
+
+  return household;
+}
 
 
 module.exports = {
   addUser,
+  createHousehold,
   getUser,
   getAllUsers,
   getUserPassword,
