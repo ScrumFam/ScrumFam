@@ -5,6 +5,8 @@ const router = Router();
 module.exports = (database) => {
 
   const userController = require('../controllers/userController')(database)
+  const cookieController = require('../controllers/cookieController')(database)
+  const sessionController = require('../controllers/sessionController')(database)
   // '/users/
   // middleware:
   //  - house hold authorization?????
@@ -14,6 +16,15 @@ module.exports = (database) => {
   router.post('/', 
     userController.addUser, 
     (req, res) => res.json(res.locals.user)
+  );
+
+  router.post('/login',
+    userController.verifyPassword,
+    cookieController.setCookie,
+    cookieController.setSSIDCookie,
+    sessionController.startSession,
+    sessionController.isLoggedIn,
+    (req, res) => res.json({message: 'user is now logged in'})
   );
 
   // Get all users for a household
