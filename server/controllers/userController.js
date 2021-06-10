@@ -6,6 +6,7 @@ module.exports = (database) => {
   
   return ({
     async addUser(req, res, next){
+      console.log(`***userControler.addUser`, req.body)
       const { username, household, password } = req.body;
       if (!household) return res.status(400).json('user must have a household');
       if (!password || !username) return res.status(400).json('missing username or pw');

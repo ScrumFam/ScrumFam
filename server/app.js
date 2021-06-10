@@ -36,6 +36,7 @@ module.exports = function(database) {
   
   // Globally serve index.html for all routes 
   app.get('*', (req, res) => {
+    console.log(req);
     console.log(`*** serving root of landing page ${req.baseURL}`);
     res.sendFile(path.resolve(__dirname + './../index.html'))
   })
