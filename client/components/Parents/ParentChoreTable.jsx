@@ -94,6 +94,34 @@ const columns = [
 
 export default function ParentChoretable(props) {
   console.log(props);
+
+  function checked(e) {
+    console.log(e);
+    console.log(typeof e.isSelected);
+    if (e.data.status === "For Review") {
+      props.verifyChore(e.data);
+    }
+    // clearCheck(e);
+    // setTimeout(() => {
+    //   if (e.isSelected === true) {
+    //     e.isSelected = false;
+    //   } else {
+    //     e.isSelected = true;
+    //   }
+    // }, 1000);
+  }
+
+  // function clearCheck(e) {
+  //   console.log("do I ever get hit??");
+  //   console.log(e.isSelected);
+  //   if (e.isSelected === true) {
+  //     console.log("inside the conditional...");
+  //     e.isSelected = false;
+  //     console.log(e.isSelected);
+  //     console.log("other side of the false");
+  //   }
+  // }
+
   return (
     <div className="tableContainer" style={{ width: "100%", height: "100%" }}>
       <DataGrid
@@ -101,6 +129,26 @@ export default function ParentChoretable(props) {
         columns={columns}
         pageSize={5}
         checkboxSelection
+        onRowSelected={checked}
+        // onSelectionModelChange={(e) => {
+        //   console.log("did this one get hit?");
+        //   e.isSelected = false;
+        // }}
+        // onRowSelected={(e) => {
+        //   console.log(e);
+        //   console.log(typeof e.isSelected);
+        //   if (e.data.status === "For Review") {
+        //     props.verifyChore(e.data);
+        //     e.isSelected = false;
+        //   }
+        //   // setTimeout(() => {
+        //   //   if (e.isSelected === true) {
+        //   //     e.isSelected = false;
+        //   //   } else {
+        //   //     e.isSelected = true;
+        //   //   }
+        //   // }, 1000);
+        // }}
       />
     </div>
   );
