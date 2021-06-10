@@ -17,25 +17,37 @@ const userController = {
       // add user to DB and responds with full user object
       return next();
     }catch(err){
-      next({
+      return next({
         log: err.stack,
         message: {err: 'Error adding user. See server Logs'}
       });
     }
   },
 
-//   async getUser(req, res, next){
-//     console.log('made it to the user controller');
-//     try {    
-//     const { userId } = req.body.id;
-//     const specificUser = await database.getUserFromDB(userId);
-//     res.locals.singleuser = specificUser;     
-//     } catch(err) {
-//       next(err);
-//     }
-//     return next();
-//   },
+  async getUser(req, res, next){
+    console.log('made it to the user controller');
+    try {    
+    const { userId } = req.params;
+    console.log(req.params);    
+    const specificUser = await database.getUser(userId);   
+    res.locals.singleUser = specificUser; 
+    return next(); 
+    } catch(err) {
+      return next(err);
+    }    
+  },
 
+  async getAllUsers(req, res, next) {
+    console.log('made it to the user controller');
+    try {
+      const { householdName } = req.params;
+      const allUsers = await database.getAllUsers(householdName);
+      res.locals.allUsersInHouse = allUsers;
+      return next();
+    } catch(err) {
+      return next(err);
+    }
+  },
  };
 
 
