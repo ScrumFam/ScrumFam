@@ -25,21 +25,21 @@ export function addChoreActionCreator(chore) {
   };
 }
 
-export function updateChoresActionCreator(chore) {
-  console.log("inside this function");
-  return function (dispatch, getState) {
-    return fetch("/chores")
-      .then((data) => data.json())
-      .then((data) => {
-        console.log(`here's the data ${data}`);
-        dispatch({
-          type: types.ALLAN_TEST,
-          payload: data,
-        });
-      })
-      .catch((error) => console.log(`there's an error: ${error}`));
-  };
-}
+// export function updateChoresActionCreator(chore) {
+//   console.log("inside this function");
+//   return function (dispatch, getState) {
+//     return fetch("/chores")
+//       .then((data) => data.json())
+//       .then((data) => {
+//         console.log(`here's the data ${data}`);
+//         dispatch({
+//           type: types.ALLAN_TEST,
+//           payload: data,
+//         });
+//       })
+//       .catch((error) => console.log(`there's an error: ${error}`));
+//   };
+// }
 
 export const addGoalActionCreator = (goal) => ({
   type: types.ADD_GOAL,

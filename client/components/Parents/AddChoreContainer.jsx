@@ -112,6 +112,8 @@ const AddChoreContainer = (props) => {
             verified_on: null,
             reward: rewardInput.value,
           };
+          descriptionInput.value = "";
+          rewardInput.value = "";
           return addChore(chore);
         }}
       >
