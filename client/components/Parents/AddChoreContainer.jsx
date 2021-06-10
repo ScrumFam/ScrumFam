@@ -102,10 +102,10 @@ const AddChoreContainer = (props) => {
           const rewardInput = document.getElementById("reward");
           const assignToInput = document.getElementById("assignTo");
           const chore = {
-            // id: null,
-            created_by: 123,
-            assigned_to: assignToInput.innerText,
-            // household: "Fictional Household",
+            //id: null,
+            created_by: 55,
+            assigned_to: 54,
+            household: "goat",
             description: descriptionInput.value,
             created_at: new Date(),
             // completed_on: null,

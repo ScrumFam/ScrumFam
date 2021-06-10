@@ -65,9 +65,9 @@ module.exports = (database) => {
   //   - authorize that the user is the one assigned OR parent of household OR member of household if unassigned
   //  - DB call to update chore status w/ completed_at timestamp
   //  - respond w/ sucess message
-  router.patch("/:choreId/complete",
-    choreController.choreComplete,
-   (req, res) => res.status(200).send("All good, chore completed"));
+  // router.patch("/:choreId/complete",
+  //   choreController.choreComplete,
+  //  (req, res) => res.status(200).send("All good, chore completed"));
   router.patch(
     "/:choreId/complete",
     choreController.verifyChore,
@@ -76,24 +76,14 @@ module.exports = (database) => {
         "inside the patch route for the chore router. About to dispatch..."
       );
       // Please note - 'chore' is singular here!
-      console.log(res.locals.chore);
-      res.json(res.locals.chore);
+      console.log(res.locals.choreComplete);
+      res.json(res.locals.choreComplete);
     }
   );
 
-  // mark Chore incomplete
-  // middleware:
-  //  - authorize that the user is the one assigned OR parent of household OR member of household if unassigned
-  //  - DB call to update chore status w/ null for completed_at
-  //  - respond w/ sucess message
-  // router.patch("/:choreId/undoComplete",
-  //   choreController.choreIncomplete, 
-  //   (req, res) => res.status(200).send("Chore not completed"));
-  router.patch(
-    "/:choreId/undoComplete",
-
-    (req, res) => res.json({})
-  );
+  return router;
+};
+  
 
     //------------------------------------ possibly do down the road
 
@@ -115,5 +105,17 @@ module.exports = (database) => {
   //  - Respond w/ success array of choreObj
   //router.get("/house/:householdName/unassigned", (req, res) => res.json({}));
 
-  return router;
-};
+   // mark Chore incomplete
+  // middleware:
+  //  - authorize that the user is the one assigned OR parent of household OR member of household if unassigned
+  //  - DB call to update chore status w/ null for completed_at
+  //  - respond w/ sucess message
+  // router.patch("/:choreId/undoComplete",
+  //   choreController.choreIncomplete, 
+  //   (req, res) => res.status(200).send("Chore not completed"));
+  // router.patch(
+  //   "/:choreId/undoComplete",
+
+  //   (req, res) => res.json({})
+  // );
+

@@ -1,21 +1,35 @@
 const db = require("../database/connections");
 
 module.exports = (database) => {
-  //const choreController = {
-  return {
-    async getChores(req, res, next) {
-      console.log("inside the getChores controller");
-      try {
-        const test = await db.query(`SELECT * FROM chore;`);
-        console.log(test);
-        res.locals.chores = test;
-        next();
-      } catch (err) {
-        console.log(err);
-      }
-    },
+  //const choreController = {    
+   return ({
+  
+  // async getChores(req, res, next) {
+  //     console.log("inside the getChores controller");
+  //     try {
+  //       const test = await db.query(`SELECT * FROM chore;`);
+  //       console.log(test);
+  //       res.locals.chores = test;
+  //       next();
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   }, 
 
-    //const choreController = {
+//const choreController = {
+  
+// async getChores(req, res, next) {
+//     console.log("inside the getChores controller");
+//     try {
+//       const test = await db.query(`SELECT * FROM chore;`);
+//       console.log(test);
+//       res.locals.chores = test;
+//       return next();
+//     } catch(err) {
+//       return next(err);
+//     }
+// },  
+  
 
     async getChores(req, res, next) {
       console.log("inside the getChores controller");
@@ -43,13 +57,8 @@ module.exports = (database) => {
       console.log("inside the addChore controller");
       console.log(req.body);
       try {
-        const { assigned_to, description, created_at, reward } = req.body;
-        const chore = await database.addChore(
-          assigned_to,
-          description,
-          created_at,
-          reward
-        );
+        //const { assigned_to, description, created_at, reward } = req.body;
+        const chore = await database.addChore(req.body);
         console.log(chore);
         //still unsure how the db hookup happens here - via database.js, and then connections?
         res.locals.chore = chore;
@@ -97,26 +106,26 @@ module.exports = (database) => {
       }
     },
 
-    async choreComplete(req, res, next) {
-      console.log("made it to the choreComplete controller");
-      try {
-        const { choreId } = req.params;
-        const choreCompleteConfirmation = await database.choreComplete(choreId);
-        res.locals.choreComplete = choreCompleteConfirmation;
-        return next();
-      } catch (err) {
-        return next(err);
-      }
-    },
+  async verifyChore(req, res, next){
+    console.log('made it to the choreComplete controller');
+    try {
+      const { choreId } = req.params;
+      const choreCompleteConfirmation = await database.verifyChore(choreId);
+      res.locals.choreComplete = choreCompleteConfirmation;
+      return next();
+    } catch(err) {
+      return next(err);
+    }
+  },
 
-    verifyChore(req, res, next) {
-      console.log("inside the verifyCHore controller");
-      console.log(req.body);
+    //  verifyChore(req, res, next) {
+    //   console.log("inside the verifyCHore controller");
+    //   console.log(req.body);
 
-      res.locals.chore = req.body;
-      next();
-    },
+    //   res.locals.chore = req.body;
+    //   next();
+    // },
 
     //return choreController;
-  };
+  });
 };

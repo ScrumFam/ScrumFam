@@ -276,8 +276,8 @@ const getSpecificUsersChores = async (userId) => {
   }
 };
 
-const choreComplete = async (choreId) => {
-  console.log("made it to the choreComplete query");
+const verifyChore = async (choreId) => {
+  console.log('made it to the choreComplete query');
   const query = `
   UPDATE chore
   SET completed_on = CURRENT_TIMESTAMP
@@ -313,19 +313,21 @@ const createHousehold = async (houseName) => {
 const addChore = async ({
   created_by,
   assigned_to,
+  household,
   description,
   created_at,
   reward,
 }) => {
   console.log("addChore to DB query");
   const query = `
-    INSERT INTO chore ("created_by" "assigned_to", description",
-      "created_at",
-
-      "reward")
-      VALUES ($1, $2, $3, $4, $5)
+    INSERT INTO "chore" (created_by, assigned_to, description,
+      created_at,
+      household,
+      reward)
+      VALUES ($1, $2, $3, $4, $5, $6)
       RETURNING *`;
-  const values = [created_by, assigned_to, description, created_at, reward];
+  const values = [created_by, assigned_to, description, created_at, household, reward];
+  console.log(values);
   try {
     const response = await db.query(query, values);
     const chore = response.rows[0];
@@ -352,5 +354,6 @@ module.exports = {
   getAllChores,
   deleteChore,
   getSpecificUsersChores,
-  choreComplete,
-};
+  verifyChore,
+}
+  
