@@ -16,7 +16,12 @@ router.get("/", choreController.getChores, (req, res) => {
 });
 
 router.post("/", choreController.addChore, (req, res) => {
-  res.json(res.locals.user);
+  console.log(
+    "inside the post route for the chore router. About to dispatch..."
+  );
+  // Please note - 'chore' is singular here!
+  console.log(res.locals.chore);
+  res.json(res.locals.chore);
 });
 
 // Get all chores for a household
