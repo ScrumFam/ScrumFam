@@ -14,6 +14,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from "react-router-dom";
 
+import axios from 'axios';
+
+
 const linkStyle = {
     color: 'rgb(37, 150, 190)',
     fontWeight: 'normal'
@@ -52,6 +55,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const signUpObject = {
+  isParent: true,
+  balance: 0,
+  activeGoal: 0,
+};
+
+const setInputValue = event => {
+  console.log(`***EVENT`, event.target.name)
+  signUpObject[event.target.name] = event.target.value;
+  console.log(`***NEW_AUTH_OBJ:`, signUpObject)
+}
+
+const addUser = () => {
+  axios.post('/users', signUpObject)
+    .then((res) => {
+      console.log(`***addUser 1st then:`, res.json())
+    })
+    .catch((err) => {
+      console.log(`***addUser catch:`, err)
+    })
+}
+
 export default function SignUp() {
   const classes = useStyles();
 
@@ -62,7 +87,7 @@ export default function SignUp() {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5" style={{color: 'black'}}>
+        <Typography component="h1" variant="h5" style={{ color: "black" }}>
           Sign up
         </Typography>
         <form className={classes.form} noValidate>
@@ -77,6 +102,7 @@ export default function SignUp() {
                 id="firstName"
                 label="First Name"
                 autoFocus
+                onChange={(e) => setInputValue(e)}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -88,6 +114,7 @@ export default function SignUp() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                onChange={(e) => setInputValue(e)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -99,6 +126,7 @@ export default function SignUp() {
                 label="Username"
                 name="username"
                 autoComplete="off"
+                onChange={(e) => setInputValue(e)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -108,8 +136,9 @@ export default function SignUp() {
                 fullWidth
                 id="householdId"
                 label="Household Id"
-                name="householdId"
+                name="household"
                 autoComplete="off"
+                onChange={(e) => setInputValue(e)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -121,6 +150,7 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange={(e) => setInputValue(e)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -133,15 +163,16 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={(e) => setInputValue(e)}
               />
             </Grid>
           </Grid>
           <Button
-            type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={() => addUser()}
           >
             Sign Up
           </Button>
