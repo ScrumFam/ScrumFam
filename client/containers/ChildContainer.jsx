@@ -4,6 +4,7 @@ import * as actions from "../actions/actions";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import ChildNavBar from '../components/Children/ChildNavBar.jsx';
 import AnimatedNumber from 'animated-number-react';
+import ChoresBox from '../components/Children/ChoresBox.jsx';
 /**
  * Approach:
  * complete task:
@@ -83,132 +84,11 @@ class ChildContainer extends Component {
           }
         /></p>
         </div>
-        <div className="parentsChildContainer childGrid">
-        <div className="userBox back">
-          <div className='childBox'>
-            <p className='descriptionHeader'>Wash the car and fill it up an with gas</p>
-            <p className='assignedAt'>Assigned at: Mon 27 2021</p>
-            <div className='status'>
-              <p>Reward: $1,000</p>
-              <button className='btn'><CheckCircleIcon color="primary" fontSize='large'/>Completed</button>
-            </div>
-          </div>
-        </div>
-        <div className="userBox back">
-          <div className='childBox'>
-            <p className='descriptionHeader'>Wash the car and fill it up an with gas</p>
-            <p className='assignedAt'>Assigned at: Mon 27 2021</p>
-            <div className='status'>
-              <p>Reward: $1,000</p>
-              <button className='btn'><CheckCircleIcon color="primary" fontSize='large'/>Completed</button>
-            </div>
-          </div>
-        </div>
-        <div className="userBox back">
-          <div className='childBox'>
-            <p className='descriptionHeader'>Wash the car and fill it up an with gas</p>
-            <p className='assignedAt'>Assigned at: Mon 27 2021</p>
-            <div className='status'>
-              <p>Reward: $1,000</p>
-              <button className='btn'><CheckCircleIcon color="primary" fontSize='large'/>Completed</button>
-            </div>
-          </div>
-        </div>
-        <div className="userBox back">
-          <div className='childBox'>
-            <p className='descriptionHeader'>Wash the car and fill it up an with gas</p>
-            <p className='assignedAt'>Assigned at: Mon 27 2021</p>
-            <div className='status'>
-              <p>Reward: $1,000</p>
-              <button className='btn'><CheckCircleIcon color="primary" fontSize='large'/>Completed</button>
-            </div>
-          </div>
-        </div>
-        <div className="userBox back">
-          <div className='childBox'>
-            <p className='descriptionHeader'>Wash the car and fill it up an with gas</p>
-            <p className='assignedAt'>Assigned at: Mon 27 2021</p>
-            <div className='status'>
-              <p>Reward: $1,000</p>
-              <button className='btn'><CheckCircleIcon color="primary" fontSize='large'/>Completed</button>
-            </div>
-          </div>
-        </div>
-        <div className="userBox back">
-          <div className='childBox'>
-            <p className='descriptionHeader'>Wash the car and fill it up an with gas</p>
-            <p className='assignedAt'>Assigned at: Mon 27 2021</p>
-            <div className='status'>
-              <p>Reward: $1,000</p>
-              <button className='btn'><CheckCircleIcon color="primary" fontSize='large'/>Completed</button>
-            </div>
-          </div>
-        </div>
-        <div className="userBox back">
-          <div className='childBox'>
-            <p className='descriptionHeader'>Wash the car and fill it up an with gas</p>
-            <p className='assignedAt'>Assigned at: Mon 27 2021</p>
-            <div className='status'>
-              <p>Reward: $1,000</p>
-              <button className='btn'><CheckCircleIcon color="primary" fontSize='large'/>Completed</button>
-            </div>
-          </div>
-        </div>
-        <div className="userBox back">
-          <div className='childBox'>
-            <p className='descriptionHeader'>Wash the car and fill it up an with gas</p>
-            <p className='assignedAt'>Assigned at: Mon 27 2021</p>
-            <div className='status'>
-              <p>Reward: $1,000</p>
-              <button className='btn'><CheckCircleIcon color="primary" fontSize='large'/>Completed</button>
-            </div>
-          </div>
-        </div>
-        <div className="userBox back">
-          <div className='childBox'>
-            <p className='descriptionHeader'>Wash the car and fill it up an with gas</p>
-            <p className='assignedAt'>Assigned at: Mon 27 2021</p>
-            <div className='status'>
-              <p>Reward: $1,000</p>
-              <button className='btn'><CheckCircleIcon color="primary" fontSize='large'/>Completed</button>
-            </div>
-          </div>
-        </div>
-        <div className="userBox back">
-          <div className='childBox'>
-            <p className='descriptionHeader'>Wash the car and fill it up an with gas</p>
-            <p className='assignedAt'>Assigned at: Mon 27 2021</p>
-            <div className='status'>
-              <p>Reward: $1,000</p>
-              <button className='btn'><CheckCircleIcon color="primary" fontSize='large'/>Completed</button>
-            </div>
-          </div>
-        </div>
-        <div className="userBox back">
-          <div className='childBox'>
-            <p className='descriptionHeader'>Wash the car and fill it up an with gas</p>
-            <p className='assignedAt'>Assigned at: Mon 27 2021</p>
-            <div className='status'>
-              <p>Reward: $1,000</p>
-              <button className='btn'><CheckCircleIcon color="primary" fontSize='large'/>Completed</button>
-            </div>
-          </div>
-        </div>
-        <div className="userBox back">
-          <div className='childBox'>
-            <p className='descriptionHeader'>Wash the car and fill it up an with gas</p>
-            <p className='assignedAt'>Assigned at: Mon 27 2021</p>
-            <div className='status'>
-              <p>Reward: $1,000</p>
-              <button className='btn'><CheckCircleIcon color="primary" fontSize='large'/>Completed</button>
-            </div>
-          </div>
-        </div>
+        <div className="parentsChildContainer childGrid">        
         
-       
+          <ChoresBox />
         
-        
-      </div>
+        </div>
       </div>
     );
   }
