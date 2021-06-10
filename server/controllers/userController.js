@@ -30,7 +30,7 @@ module.exports = (database) => {
   async getUser(req, res, next){
     console.log('made it to the user controller');
     try {    
-      const { userId } = req.params;
+      const { userId } = req.params;      
       console.log(req.params);    
       const specificUser = await database.getUser(userId);   
       res.locals.singleUser = specificUser; 
@@ -52,8 +52,47 @@ module.exports = (database) => {
     }
   },
 
+  async deleteUser(req, next) {
+    console.log('made it to the user controller');
+    try {
+      const { userId } = req.params;
+      const deleted = await database.deleteUser(userId);
+      return next();
+    } catch(err) {
+      return next(err);
+    }
+  },
 
-});
+  
+  // come back here and add all the available things to update
+  async updateUser(req, res, next) {
+    console.log('made it to the user controller');
+    try {
+      const { userId } = req.params;
+      const { password } = req.body;
+      const update = await database.updateUser(userId, password);
+      res.locals.updatedUser = update;
+      return next(); 
+    } catch(err) {
+      return next(err);
+    }
+  },
+
+  async updateBalance(req, res, next) {
+    console.log('made it to the user controller');
+    try {
+      const { userId } = req.params;
+      const { balance } = req.body;
+      const update = await database.updateBalance(userId, balance);
+      res.locals.newBalance = update;
+      return next();
+    } catch(err) {
+      return next(err);
+    }
+  }
+
+ }); 
+}
 
 
 // '/users' -> all the actions relating to users and households

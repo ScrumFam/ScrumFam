@@ -46,7 +46,7 @@ module.exports = (database) => {
   //  - Respond w/ success or error  
   router.delete('/:userId',
     userController.deleteUser,  
-    (req, res) => res.status(200).send('All good, deleted one');
+    (req, res) => res.status(200).send('All good, deleted one')
   );
 
   // update user settings
@@ -55,8 +55,9 @@ module.exports = (database) => {
   //  - DB call to update the user table
   //  - format response object
   //  - respond w/ updated userObj
-  router.patch('/:userId', 
-    (req, res) => res.json({})
+  router.patch('/:userId',
+    userController.updateUser,
+    (req, res) => res.json("updated password")
   );
 
   // update the users account balance
@@ -65,8 +66,9 @@ module.exports = (database) => {
   //  - DB call to update balance
   //  - format response object
   //  - respond with new balance 
-  router.put('/:userId/balance', 
-    (req, res) => res.jsom({})
+  router.put('/:userId/balance',
+    userController.updateBalance, 
+    (req, res) => res.json(res.locals.newBalance)
   );
     return router
 } 
