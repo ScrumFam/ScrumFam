@@ -14,6 +14,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from "react-router-dom";
 
+import axios from 'axios';
+
+
 const linkStyle = {
     color: 'rgb(37, 150, 190)',
     fontWeight: 'normal'
@@ -52,7 +55,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const signUpObject = {};
+const signUpObject = {
+  isParent: true,
+  balance: 0,
+  activeGoal: 0,
+};
 
 const setInputValue = event => {
   console.log(`***EVENT`, event.target.name)
@@ -60,6 +67,15 @@ const setInputValue = event => {
   console.log(`***NEW_AUTH_OBJ:`, signUpObject)
 }
 
+const addUser = () => {
+  axios.post('/users', signUpObject)
+    .then((res) => {
+      console.log(`***addUser 1st then:`, res)
+    })
+    .catch((err) => {
+      console.log(`***addUser catch:`, err)
+    })
+}
 
 export default function SignUp() {
   const classes = useStyles();
@@ -152,11 +168,11 @@ export default function SignUp() {
             </Grid>
           </Grid>
           <Button
-            type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={() => addUser()}
           >
             Sign Up
           </Button>
