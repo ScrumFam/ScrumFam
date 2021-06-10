@@ -131,16 +131,16 @@ const buildQueryComponents = (obj, validProps) => {
   const values = [obj[first]];
   let fields = `${first}`;
   let vals = "$1";
-
-  props.forEach((prop, i) => {
+  let i = 1;
+  props.forEach((prop) => {
     prop = camelToSnake(prop);
     if (validProps[prop]) {
+      i += 1;
       fields += `, ${prop}`;
-      vals += `, $${i + 2}`;
+      vals += `, $${i}`;
       values.push(obj[prop]);
     }
   });
-
   return { values, fields, vals };
 };
 
@@ -236,7 +236,6 @@ const addUser = async (userObj) => {
     INSERT INTO app_user (${fields})
     VALUES (${vals})
     RETURNING *`;
-
     const response = await db.query(query, values);
     const user = response.rows[0];
     delete user.password;
