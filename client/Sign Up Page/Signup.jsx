@@ -106,6 +106,17 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
+                id="householdId"
+                label="Household Id"
+                name="householdId"
+                autoComplete="off"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
                 id="email"
                 label="Email Address"
                 name="email"

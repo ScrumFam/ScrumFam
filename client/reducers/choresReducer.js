@@ -102,6 +102,19 @@ const choresReducer = (state = initialState, action) => {
         choresList,
       };
 
+    case types.VERIFY_CHORE:
+      console.log(action.payload);
+      choresList = state.choresList.slice();
+      choresList.forEach((chore) => {
+        if (action.payload.id === chore.id) {
+          chore.status = "Completed";
+        }
+      });
+      return {
+        ...state,
+        choresList,
+      };
+
     case types.ALLAN_TEST:
       console.log("ACTION PAYLOAD COMING UP");
       console.log(action.payload);

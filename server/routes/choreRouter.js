@@ -2,7 +2,6 @@ const { Router } = require("express");
 const router = Router();
 
 module.exports = (database) => {
-
   const choreController = require("../controllers/choreController")(database);
 
   // /chores
@@ -10,14 +9,14 @@ module.exports = (database) => {
   //  - DB fucntion to add the chore
   //  - format response object
   //  - Respond w/ the user object
-router.post("/", choreController.addChore, (req, res) => {
-  console.log(
-    "inside the post route for the chore router. About to dispatch..."
-  );
-  // Please note - 'chore' is singular here!
-  console.log(res.locals.chore);
-  res.json(res.locals.chore);
-});
+  router.post("/", choreController.addChore, (req, res) => {
+    console.log(
+      "inside the post route for the chore router. About to dispatch..."
+    );
+    // Please note - 'chore' is singular here!
+    console.log(res.locals.chore);
+    res.json(res.locals.chore);
+  });
 
   // //ALLAN THUNK TEST
   // router.get("/", choreController.getChores, (req, res) => {
@@ -69,6 +68,18 @@ router.post("/", choreController.addChore, (req, res) => {
   router.patch("/:choreId/complete",
     choreController.choreComplete,
    (req, res) => res.status(200).send("All good, chore completed"));
+  router.patch(
+    "/:choreId/complete",
+    choreController.verifyChore,
+    (req, res) => {
+      console.log(
+        "inside the patch route for the chore router. About to dispatch..."
+      );
+      // Please note - 'chore' is singular here!
+      console.log(res.locals.chore);
+      res.json(res.locals.chore);
+    }
+  );
 
   // mark Chore incomplete
   // middleware:
@@ -78,6 +89,11 @@ router.post("/", choreController.addChore, (req, res) => {
   // router.patch("/:choreId/undoComplete",
   //   choreController.choreIncomplete, 
   //   (req, res) => res.status(200).send("Chore not completed"));
+  router.patch(
+    "/:choreId/undoComplete",
+
+    (req, res) => res.json({})
+  );
 
     //------------------------------------ possibly do down the road
 
@@ -100,5 +116,4 @@ router.post("/", choreController.addChore, (req, res) => {
   //router.get("/house/:householdName/unassigned", (req, res) => res.json({}));
 
   return router;
-
-}
+};

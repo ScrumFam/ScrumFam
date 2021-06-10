@@ -95,6 +95,7 @@ module.exports = (database) => {
 }
 
 
+
 // '/users' -> all the actions relating to users and households
 
 
@@ -104,4 +105,3 @@ module.exports = (database) => {
 // Delete a user (DELETE '/users/:userId'
 // Update a user settings (active_goal, password) (PATCH '/users/:userId')
 // Update balance ("spend" money) (PUT '/users/:userId/balance/`
-

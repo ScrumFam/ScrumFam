@@ -1,21 +1,35 @@
 const db = require("../database/connections");
 
 module.exports = (database) => {
-
-  return ({
+  //const choreController = {    
+   return ({
+  
+  async getChores(req, res, next) {
+      console.log("inside the getChores controller");
+      try {
+        const test = await db.query(`SELECT * FROM chore;`);
+        console.log(test);
+        res.locals.chores = test;
+        next();
+      } catch (err) {
+        console.log(err);
+      }
+    }, 
 
 //const choreController = {
-  async getChores(req, res, next) {
+  
+async getChores(req, res, next) {
     console.log("inside the getChores controller");
     try {
       const test = await db.query(`SELECT * FROM chore;`);
       console.log(test);
       res.locals.chores = test;
-      next();
-    } catch (err) {
-      console.log(err);
+      return next();
+    } catch(err) {
+      return next(err);
     }
-  },
+},  
+  
 
   addChore(req, res, next) {
     //wrap in try / catch if doing db call...
@@ -72,10 +86,19 @@ module.exports = (database) => {
     } catch(err) {
       return next(err);
     }
-  }
+  },
 
- //};
+     verifyChore(req, res, next) {
+      console.log("inside the verifyCHore controller");
+      console.log(req.body);
 
-//return choreController;
- }); 
-}
+      res.locals.chore = req.body;
+      next();
+    },
+
+  //return choreController;
+
+  });
+  
+};
+

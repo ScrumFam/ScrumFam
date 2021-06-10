@@ -2,6 +2,14 @@
   font-family: "Crafty Girls", cursive;
   font-size: 3rem;
 }
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 0; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}
 
 * {
   margin: 0;
@@ -135,6 +143,110 @@
 }
 
 .btn {
-  background-color: white;
+  background-color: transparent;
   border-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-family: "Montserrat" !important;
+  letter-spacing: 0.12rem;
+  color: rgb(53, 53, 53);
+  font-weight: bold;
+}
+
+.descriptionHeader {
+  width: 100%;
+  color: rgb(114, 114, 114);
+  font-size: 1.5rem;
+  font-weight: bold;
+  align-self: flex-start;
+  text-align: start;
+}
+
+.childBox {
+  width: 80%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  font-family: "Montserrat" !important;
+}
+
+.status {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif !important;
+  border-top: 0.8px solid rgb(184, 179, 179);
+  padding-top: 1rem;
+  margin-top: 5rem;
+}
+
+.status > p {
+  font-weight: bold;
+  letter-spacing: 0.05rem;
+  color: rgb(53, 53, 53);
+}
+
+.assignedAt {
+  color: rgb(173, 171, 171);
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.back {
+  background-image: url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/v661-tk-16-watercolorpattern_1.jpg?bg=transparent&con=3&cs=srgb&dpr=1&fm=jpg&ixlib=php-3.1.0&q=65&usm=15&vib=3&w=1200&s=1add71ba2577d8a760ab809304018bf1");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  width: 23vw;
+}
+
+.childComp {
+  // width: 100vw;
+  // height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  background-color: #fafafa;
+}
+
+.childGrid {
+  grid-column: 1 / 13;
+  grid-row: 5 / 20;
+  // justify-content: start;
+  width: 100%;
+  padding: 2rem;
+}
+
+.imagesChild {
+  border-radius: 50%;
+}
+
+.hero {
+  grid-column: 3 / 11;
+  grid-row: 2 / 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero > h1 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  color: rgb(70, 69, 69);
+}
+
+.hero > h3 {
+  font-size: 2rem;
+  color: rgb(114, 114, 114);
+}
+
+.hero > p {
+  font-size: 2rem;
+  border-bottom: 1px rgb(182, 179, 179) solid;
+  color: rgb(114, 114, 114);
 }

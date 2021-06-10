@@ -46,6 +46,7 @@ module.exports = (database) => {
   //  - Respond w/ success or error  
   router.delete('/:userId',
     userController.deleteUser,  
+    // userController.deleteUser,  
     (req, res) => res.status(200).send('All good, deleted one')
   );
 
