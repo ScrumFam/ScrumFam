@@ -4,9 +4,13 @@ const path = require("path");
 require('dotenv').config();
 // console.log(process.env.TEST_ENV);
 // This port will be used for express and the socket io connection
-const { choreRouter, userRouter } = require('./routes/router');
+
 
 module.exports = function(database) {
+
+  const choreRouter = require('./routes/choreRouter')(database); 
+  const userRouter = require('./routes/userRouter')(database);
+  // const choreRouter = require('./routes/choreRouter')(database)
 
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
