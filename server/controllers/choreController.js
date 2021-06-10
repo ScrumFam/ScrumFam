@@ -4,31 +4,31 @@ module.exports = (database) => {
   //const choreController = {    
    return ({
   
-  async getChores(req, res, next) {
-      console.log("inside the getChores controller");
-      try {
-        const test = await db.query(`SELECT * FROM chore;`);
-        console.log(test);
-        res.locals.chores = test;
-        next();
-      } catch (err) {
-        console.log(err);
-      }
-    }, 
+  // async getChores(req, res, next) {
+  //     console.log("inside the getChores controller");
+  //     try {
+  //       const test = await db.query(`SELECT * FROM chore;`);
+  //       console.log(test);
+  //       res.locals.chores = test;
+  //       next();
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   }, 
 
 //const choreController = {
   
-async getChores(req, res, next) {
-    console.log("inside the getChores controller");
-    try {
-      const test = await db.query(`SELECT * FROM chore;`);
-      console.log(test);
-      res.locals.chores = test;
-      return next();
-    } catch(err) {
-      return next(err);
-    }
-},  
+// async getChores(req, res, next) {
+//     console.log("inside the getChores controller");
+//     try {
+//       const test = await db.query(`SELECT * FROM chore;`);
+//       console.log(test);
+//       res.locals.chores = test;
+//       return next();
+//     } catch(err) {
+//       return next(err);
+//     }
+// },  
   
 
   addChore(req, res, next) {
@@ -76,11 +76,11 @@ async getChores(req, res, next) {
     }    
   },
 
-  async choreComplete(req, res, next){
+  async verifyChore(req, res, next){
     console.log('made it to the choreComplete controller');
     try {
       const { choreId } = req.params;
-      const choreCompleteConfirmation = await database.choreComplete(choreId);
+      const choreCompleteConfirmation = await database.verifyChore(choreId);
       res.locals.choreComplete = choreCompleteConfirmation;
       return next();
     } catch(err) {
@@ -88,13 +88,13 @@ async getChores(req, res, next) {
     }
   },
 
-     verifyChore(req, res, next) {
-      console.log("inside the verifyCHore controller");
-      console.log(req.body);
+    //  verifyChore(req, res, next) {
+    //   console.log("inside the verifyCHore controller");
+    //   console.log(req.body);
 
-      res.locals.chore = req.body;
-      next();
-    },
+    //   res.locals.chore = req.body;
+    //   next();
+    // },
 
   //return choreController;
 

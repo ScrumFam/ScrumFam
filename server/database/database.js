@@ -252,7 +252,7 @@ const getSpecificUsersChores = async (userId) => {
   }
 };
 
-const choreComplete = async (choreId) => {
+const verifyChore = async (choreId) => {
   console.log('made it to the choreComplete query');
   const query = `
   UPDATE chore
@@ -284,5 +284,5 @@ module.exports = {
   getAllChores,
   deleteChore,
   getSpecificUsersChores,
-  choreComplete,
+  verifyChore,
 }
