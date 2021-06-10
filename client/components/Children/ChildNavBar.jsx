@@ -28,16 +28,22 @@ const buttonStyle = {
   letterSpacing: '0.0075em',
 }
 
-export default function ParentNavBar() {
+export default function ChildNavBar() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
+        <img
+            className='imagesChild'
+            src="https://cdn.dribbble.com/users/230875/screenshots/12078079/media/c08285d2e039896a565cffeb5eb44a15.jpg?compress=1&resize=400x300"
+            width="50px"
+            height="50px"
+          ></img>
           <div className="linkContainer">
-            <Link className='relativeContainer' to="/adminPanel" style={buttonStyle}>
-              <div className='navBarLinks' >Add Child</div>
+            <Link className='relativeContainer' to="#" style={buttonStyle}>
+              <div className='navBarLinks' >Hey, Ozi</div>
             </Link>
           </div>
         </Toolbar>
