@@ -23,6 +23,10 @@ import ParentNavBar from "../components/Parents/ParentNavBar.jsx";
  */
 
 // --------------------------------------------------------------------------------------------- //
+function mapStateToProps(state) {
+  const { choresList } = state;
+  return choresList;
+}
 
 const mapDispatchToProps = (dispatch) => ({
   addUser: (e) => dispatch(actions.addUserActionCreator(e)),
@@ -99,7 +103,7 @@ class ParentContainer extends Component {
           Add Chore
         </button> */}
         {/* <h3>CHORES</h3> */}
-        <ParentChoreTable />
+        <ParentChoreTable choresList={this.props.choresList} />
         {/* <h3>COMPLETED TASKS FOR REVIEW</h3>
         <ul>
           <li>Task 1...</li>
@@ -118,4 +122,4 @@ class ParentContainer extends Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(ParentContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ParentContainer);

@@ -102,9 +102,15 @@ const AddChoreContainer = (props) => {
           const rewardInput = document.getElementById("reward");
           const assignToInput = document.getElementById("assignTo");
           const chore = {
-            description: descriptionInput.value,
-            reward: rewardInput.value,
+            id: 666,
+            created_by: "Fictional Parent",
             assigned_to: assignToInput.innerText,
+            household: "Fictional Household",
+            description: descriptionInput.value,
+            created_at: "Fictional Timestamp",
+            completed_on: null,
+            verified_on: null,
+            reward: rewardInput.value,
           };
           return addChore(chore);
         }}
