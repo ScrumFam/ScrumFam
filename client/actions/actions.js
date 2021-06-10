@@ -25,6 +25,31 @@ export function addChoreActionCreator(chore) {
   };
 }
 
+export function verifyChoreActionCreator(chore) {
+  console.log("inside verify chore action creator");
+  console.log(chore);
+  return function (dispatch, getState) {
+    return fetch(`/chores/${chore.id}/complete`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(chore),
+    })
+      .then((data) => data.json())
+      .then((data) => {
+        console.log(`here's the data ${data}`);
+        dispatch({
+          type: types.VERIFY_CHORE,
+          payload: data,
+        });
+      })
+      .catch((error) =>
+        console.log(`error in verifyChoreActionCreator: ${error}`)
+      );
+  };
+}
+
 // export function updateChoresActionCreator(chore) {
 //   console.log("inside this function");
 //   return function (dispatch, getState) {
