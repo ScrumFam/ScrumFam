@@ -57,13 +57,8 @@ module.exports = (database) => {
       console.log("inside the addChore controller");
       console.log(req.body);
       try {
-        const { assigned_to, description, created_at, reward } = req.body;
-        const chore = await database.addChore(
-          assigned_to,
-          description,
-          created_at,
-          reward
-        );
+        //const { assigned_to, description, created_at, reward } = req.body;
+        const chore = await database.addChore(req.body);
         console.log(chore);
         //still unsure how the db hookup happens here - via database.js, and then connections?
         res.locals.chore = chore;
