@@ -2,8 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions/actions";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+<<<<<<< HEAD
 import ChildNavBar from "../components/Children/ChildNavBar.jsx";
 import AnimatedNumber from "animated-number-react";
+=======
+import ChildNavBar from '../components/Children/ChildNavBar.jsx';
+import AnimatedNumber from 'animated-number-react';
+import ChoresBox from '../components/Children/ChoresBox.jsx';
+>>>>>>> f377f2a9227a37812d9233f0190510931af7d874
 /**
  * Approach:
  * complete task:

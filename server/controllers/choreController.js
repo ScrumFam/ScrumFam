@@ -1,7 +1,8 @@
 const db = require("../database/connections");
 
 module.exports = (database) => {
-  const choreController = {
+  //const choreController = {
+  return {
     async getChores(req, res, next) {
       console.log("inside the getChores controller");
       try {
@@ -35,6 +36,56 @@ module.exports = (database) => {
       }
     },
 
+    async getAllChores(req, res, next) {
+      console.log("made it to the getallchores");
+      try {
+        const { householdName } = req.params;
+        const allChores = await database.getAllChores(householdName);
+        console.log(allChores);
+        res.locals.allChoresInHouse = allChores;
+        return next();
+      } catch (err) {
+        return next(err);
+      }
+    },
+
+    async deleteChore(req, res, next) {
+      console.log("made it to the deletechore controller");
+      try {
+        const { choreId } = req.params;
+        const deleted = await database.deleteChore(choreId);
+        return next();
+      } catch (err) {
+        return next(err);
+      }
+    },
+
+    async getSpecificUsersChores(req, res, next) {
+      console.log("made it to the getSpecificUsersChores controller");
+      try {
+        const { userId } = req.params;
+        const specificUserChores = await database.getSpecificUsersChores(
+          userId
+        );
+        res.locals.userChores = specificUserChores;
+        return next();
+      } catch (err) {
+        return next(err);
+      }
+    },
+
+    async choreComplete(req, res, next) {
+      console.log("made it to the choreComplete controller");
+      try {
+        const { choreId } = req.params;
+        const choreCompleteConfirmation = await database.choreComplete(choreId);
+        res.locals.choreComplete = choreCompleteConfirmation;
+        return next();
+      } catch (err) {
+        return next(err);
+      }
+    },
+
     verifyChore(req, res, next) {
       console.log("inside the verifyCHore controller");
       console.log(req.body);
@@ -42,7 +93,7 @@ module.exports = (database) => {
       res.locals.chore = req.body;
       next();
     },
-  };
 
-  return choreController;
+    //return choreController;
+  };
 };
