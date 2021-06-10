@@ -70,7 +70,7 @@ const setInputValue = event => {
 const addUser = () => {
   axios.post('/users', signUpObject)
     .then((res) => {
-      console.log(`***addUser 1st then:`, res)
+      console.log(`***addUser 1st then:`, res.json())
     })
     .catch((err) => {
       console.log(`***addUser catch:`, err)
@@ -136,7 +136,7 @@ export default function SignUp() {
                 fullWidth
                 id="householdId"
                 label="Household Id"
-                name="householdId"
+                name="household"
                 autoComplete="off"
                 onChange={(e) => setInputValue(e)}
               />
