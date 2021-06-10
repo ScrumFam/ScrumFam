@@ -67,6 +67,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const authObject = {};
+
+const setInputValue = event => {
+  console.log(`***EVENT`, event.target.name)
+  authObject[event.target.name] = event.target.value;
+  console.log(`***NEW_AUTH_OBJ:`, authObject)
+}
+
 
 export default function SignInSide() {
   const classes = useStyles();
@@ -84,7 +92,7 @@ export default function SignInSide() {
             Sign in
           </Typography>
           <form className={classes.form} noValidate>
-          <TextField
+            <TextField
               variant="outlined"
               margin="normal"
               required
@@ -94,6 +102,7 @@ export default function SignInSide() {
               name="householdid"
               autoComplete="off"
               autoFocus
+              onChange={(e) => setInputValue(e)}
             />
             <TextField
               variant="outlined"
@@ -104,6 +113,7 @@ export default function SignInSide() {
               label="Username"
               name="email"
               autoComplete="email"
+              onChange={(e) => setInputValue(e)}
             />
             <TextField
               variant="outlined"
@@ -115,6 +125,7 @@ export default function SignInSide() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={(e) => setInputValue(e)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -126,6 +137,7 @@ export default function SignInSide() {
               variant="contained"
               color="primary"
               className={classes.submit}
+              onClick={() => {}}
             >
               Sign In
             </Button>
@@ -142,7 +154,7 @@ export default function SignInSide() {
               </Grid>
               <Grid item>
                 {/* this home link can be deleted. it is only to test the homepage */}
-                <br/>
+                <br />
                 <Link to="/home" variant="body2" style={linkStyle}>
                   {"HOME_TEST"}
                 </Link>

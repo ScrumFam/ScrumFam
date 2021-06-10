@@ -13,6 +13,15 @@ module.exports = (database) => {
   //  - DB fucntion to add the user
   //  - format response object
   //  - Respond w/ the user object 
+
+  // //test route
+  // router.get('/',
+  //   (req, res) => {
+  //     console.log(`*****hitting users`)  
+  //     res.json({test: true})
+  //   }
+  // );
+
   router.post('/', 
     userController.addUser, 
     (req, res) => res.json(res.locals.user)
