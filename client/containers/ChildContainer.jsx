@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import * as actions from "../actions/actions";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import ChildNavBar from '../components/Children/ChildNavBar.jsx';
+import AnimatedNumber from 'animated-number-react';
 /**
  * Approach:
  * complete task:
@@ -20,11 +21,16 @@ const mapDispatchToProps = (dispatch) => ({
 class ChildContainer extends Component {
   constructor(props) {
     super(props);
-
+    this.state = {
+      status: 'completed'
+    }
     //refactor to handle redux. only using this to render parent or child component
     // this.submitChore = this.submitChore.bind(this);
   }
 
+  // handleClick(e){
+
+  // }
   // submitChore(){
   //   //this function will send a post request (or dispatch an action)
   //   console.log('*** submitting chore')
@@ -60,7 +66,23 @@ class ChildContainer extends Component {
     return (
       <div className='childComp'>
         <ChildNavBar />
-        
+        <div className='hero'>
+          <h1>Welcome Back, Child</h1>
+          <h3>Your Total Earnings</h3>
+          <p>$<AnimatedNumber
+          value={12000}
+          formatValue={v => v.toFixed(0)}
+          duration={1000}
+          frameStyle={perc => (
+            { opacity: perc / 100 }
+          )}
+          style={
+            {
+              fontSize: 200,
+            }
+          }
+        /></p>
+        </div>
         <div className="parentsChildContainer childGrid">
         <div className="userBox back">
           <div className='childBox'>

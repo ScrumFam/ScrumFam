@@ -43,7 +43,7 @@ export default function ChildNavBar() {
           ></img>
           <div className="linkContainer">
             <Link className='relativeContainer' to="#" style={buttonStyle}>
-              <div className='navBarLinks' >Welcome, Child</div>
+              <div className='navBarLinks' >Hey, Ozi</div>
             </Link>
           </div>
         </Toolbar>

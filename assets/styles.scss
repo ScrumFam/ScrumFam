@@ -224,3 +224,29 @@ html {
 .imagesChild {
   border-radius: 50%;
 }
+
+.hero {
+  grid-column: 3 / 11;
+  grid-row: 2 / 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero > h1 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  color: rgb(70, 69, 69);
+}
+
+.hero > h3 {
+  font-size: 2rem;
+  color: rgb(114, 114, 114);
+}
+
+.hero > p {
+  font-size: 2rem;
+  border-bottom: 1px rgb(182, 179, 179) solid;
+  color: rgb(114, 114, 114);
+}
