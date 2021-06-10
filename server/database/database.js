@@ -393,16 +393,22 @@ const choreComplete = async (choreId) => {
   }
 };
 
-const addChore = async ({ assigned_to, description, created_at, reward }) => {
+const addChore = async ({
+  created_by,
+  assigned_to,
+  description,
+  created_at,
+  reward,
+}) => {
   console.log("addChore to DB query");
   const query = `
-    INSERT INTO chore ("assigned_to", description",
+    INSERT INTO chore ("created_by" "assigned_to", description",
       "created_at",
 
       "reward")
-      VALUES ($1, $2, $3, $4)
+      VALUES ($1, $2, $3, $4, $5)
       RETURNING *`;
-  const values = [assigned_to, description, created_at, reward];
+  const values = [created_by, assigned_to, description, created_at, reward];
   try {
     const response = await db.query(query, values);
     const chore = response.rows[0];

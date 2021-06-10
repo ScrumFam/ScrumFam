@@ -29,13 +29,34 @@ module.exports = (database) => {
       }
     },
 
-    addChore(req, res, next) {
+    // addChore(req, res, next) {
+    //   //wrap in try / catch if doing db call...
+    //   console.log("inside the addChore controller");
+    //   console.log(req.body);
+    //   //still unsure how the db hookup happens here - via database.js, and then connections?
+    //   res.locals.chore = req.body;
+    //   next();
+    // },
+
+    async addChore(req, res, next) {
       //wrap in try / catch if doing db call...
       console.log("inside the addChore controller");
       console.log(req.body);
-      //still unsure how the db hookup happens here - via database.js, and then connections?
-      res.locals.chore = req.body;
-      next();
+      try {
+        const { assigned_to, description, created_at, reward } = req.body;
+        const chore = await database.addChore(
+          assigned_to,
+          description,
+          created_at,
+          reward
+        );
+        console.log(chore);
+        //still unsure how the db hookup happens here - via database.js, and then connections?
+        res.locals.chore = chore;
+        return next();
+      } catch (err) {
+        return next(err);
+      }
     },
 
     async getAllChores(req, res, next) {
